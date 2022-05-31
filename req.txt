@@ -1,0 +1,3 @@
+# A projekt futtatásához az alábbi modulokat telepíteni kell, telepítéshez parancssorból: pip install -r req.txt
+pygame
+numpy
