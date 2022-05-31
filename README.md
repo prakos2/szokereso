@@ -1,0 +1,2 @@
+# szokereso
+Python szókereső
