@@ -14,7 +14,7 @@ class Szokereso():
         self.ABLAK_MERET=(self.SZELESSEG/1.5, self.MAGASSAG/1.5) # Relatív ablakméret
         self.FPS=60 # Képkocka/s
         self.KEPERNYO=pg.display.set_mode(self.ABLAK_MERET) # képernyőméret
-        pg.display.set_caption("Szókereső") # ablaknév
+         # ablaknév
         # Játékvezérlő
         self.JATEKVEZERLO = Jatekvezerlo()
         self.JATEKVEZERLO.reset()
@@ -31,16 +31,13 @@ class Szokereso():
             # Képfrissítés
             pg.display.flip()
             self.ORA.tick(self.FPS)
+            pg.display.set_caption(str(10-(pg.time.get_ticks()//1000)))
             # Játékvezérlés
-            self.JATEKVEZERLO.frissit()
             if self.JATEKVEZERLO.jatekallas == "menu":
-                self.KEPERNYO.fill((255,255,255))
                 self.JATEKVEZERLO.f_jatekallas("jatek")
             elif self.JATEKVEZERLO.jatekallas == "jatek":
-                self.KEPERNYO.fill((125,52,52))
                 self.JATEKVEZERLO.f_jatekallas("vegeredmeny")
             elif self.JATEKVEZERLO.jatekallas == "vegeredmeny":
-                self.KEPERNYO.fill((52,32,12))
                 self.JATEKVEZERLO.f_jatekallas("menu")
 
 
