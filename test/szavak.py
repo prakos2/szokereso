@@ -1,3 +1,4 @@
+from random import randint
 def szavak_elhelyezese(n):
     if n%2==0:
         szavak=[]
@@ -11,6 +12,11 @@ def szavak_elhelyezese(n):
             tomb.append([])#sorok
             for j in range(n):
                 tomb[i].append(0)#oszlopok
+        #szavak elhelyezkedése random sorrendben
+        szo=[]
+        random=randint(len(szavak))
+        szo.append(szo[random])
+        print(szo)
         print(tomb)
 
 szavak_elhelyezese(4)
