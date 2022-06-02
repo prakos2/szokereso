@@ -1,18 +1,18 @@
 from random import randint
 
 def szavak_elhelyezese(random_szavak_szama,szavak_max_merete):
-    szavak=[]
-    #fajlbeolvasas és fajlrendezes
+    SZAVAK=[]
+    #fajlbeolvasas es fajlrendezes
     with open("C:\\Users\\Komlósi Ádám\\Desktop\\szokereso\\assets\\szavak.txt",'r',encoding='utf-8-sig') as fajl:
         for i in fajl:
-            szavak.append(i.split(';'))
+            SZAVAK.append(i.split(';'))
     #random szo generalas es szavak max merete
     random_szavak=[]
     ciklus=True
     for i in range(random_szavak_szama):
         while ciklus==True:
-                random_szo_szama=randint(0,len(szavak[0]))
-                if len(szavak[0][random_szo_szama])<=szavak_max_merete:
+                random_szo_szama=randint(0,len(SZAVAK[0]))
+                if len(SZAVAK[0][random_szo_szama])<=szavak_max_merete:
                     random_szavak.append(szavak[0][random_szo_szama])
                     ciklus=False
                 else:
