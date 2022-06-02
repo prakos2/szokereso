@@ -1,5 +1,6 @@
 import pygame as pg
 from Jatekvezerlo import Jatekvezerlo
+from Ablakvezerlo import Ablakvezerlo, Ablakkomponens
 
 class Szokereso():
     """
@@ -10,19 +11,23 @@ class Szokereso():
         pg.init()
         self.ORA = pg.time.Clock() # óra
         # PyGame ablak
-        self.FELBONTAS=self.SZELESSEG, self.MAGASSAG=(pg.display.Info().current_w, pg.display.Info().current_h) # A képernyő teljes mérete
-        self.ABLAK_MERET=(self.SZELESSEG/1.5, self.MAGASSAG/1.5) # Relatív ablakméret
-        self.FPS=60 # Képkocka/s
+        self.FELBONTAS=self.ABLAK_SZELESSEG, self.ABLAK_MAGASSAG=(pg.display.Info().current_w, pg.display.Info().current_h) # A képernyő teljes mérete
+        self.ABLAK_MERET=(self.ABLAK_SZELESSEG/1.5, self.ABLAK_MAGASSAG/1.5) # Relatív ablakméret
+        self.FPS=60 # képkocka / s
         self.KEPERNYO=pg.display.set_mode(self.ABLAK_MERET) # képernyőméret
-         # ablaknév
+        pg.display.set_caption("Szókereső") # ablaknév
         # Játékvezérlő
         self.JATEKVEZERLO = Jatekvezerlo()
         self.JATEKVEZERLO.reset()
+        # Ablakvezérlő
+        self.ABLAKVEZERLO = Ablakvezerlo()
+        # Ablakok inicializálása
+        Ablakvezerlo.s_ablakok
     
     """
     Tickre változó függvény
     """
-    def _folyamat(self):
+    def folyamat(self):
         while True:
             # Kilépés kezelése
             for i in pg.event.get():
@@ -31,17 +36,15 @@ class Szokereso():
             # Képfrissítés
             pg.display.flip()
             self.ORA.tick(self.FPS)
-            pg.display.set_caption(str(10-(pg.time.get_ticks()//1000)))
             # Játékvezérlés
             if self.JATEKVEZERLO.jatekallas == "menu":
-                self.JATEKVEZERLO.f_jatekallas("jatek")
+                Ablakvezerlo.rajzol("menu")
             elif self.JATEKVEZERLO.jatekallas == "jatek":
-                self.JATEKVEZERLO.f_jatekallas("vegeredmeny")
+                Ablakvezerlo.rajzol("jatek")
             elif self.JATEKVEZERLO.jatekallas == "vegeredmeny":
-                self.JATEKVEZERLO.f_jatekallas("menu")
-
+                Ablakvezerlo.rajzol("vegeredmeny")
 
 if __name__ == "__main__":
     jatek_peldany = Szokereso()
-    jatek_peldany._folyamat()
+    jatek_peldany.folyamat()
     exit()
