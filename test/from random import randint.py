@@ -1,4 +1,5 @@
 import pygame
+
 pygame.init()
 
 window = pygame.display.set_mode((500,500))
@@ -16,9 +17,11 @@ textRect.center=500//2,500//2
 clock=pygame.time.Clock()
 
 while not done:
-    clock.tick(60)  
-    secs +=1
+    tick-=clock.tick(1)
     window.blit(text,textRect)
+    if tick==1000:
+        tick=0
+        secs+=1
     if secs==60:
         secs=0
         mins+=1
