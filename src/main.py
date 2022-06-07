@@ -1,6 +1,6 @@
 import pygame as pg
 from Jatekvezerlo import Jatekvezerlo
-from Ablakvezerlo import Ablakvezerlo, Ablakkomponens
+import Ablakvezerlo as AV
 
 class Szokereso():
     """
@@ -9,42 +9,38 @@ class Szokereso():
     def __init__(self):
         # PyGame
         pg.init()
-        self.ORA = pg.time.Clock() # óra
-        # PyGame ablak
-        self.FELBONTAS=self.ABLAK_SZELESSEG, self.ABLAK_MAGASSAG=(pg.display.Info().current_w, pg.display.Info().current_h) # A képernyő teljes mérete
-        self.ABLAK_MERET=(self.ABLAK_SZELESSEG/1.5, self.ABLAK_MAGASSAG/1.5) # Relatív ablakméret
-        self.FPS=60 # képkocka / s
-        self.KEPERNYO=pg.display.set_mode(self.ABLAK_MERET) # képernyőméret
-        pg.display.set_caption("Szókereső") # ablaknév
         # Játékvezérlő
         self.JATEKVEZERLO = Jatekvezerlo()
-        self.JATEKVEZERLO.reset()
-        # Ablakvezérlő
-        self.ABLAKVEZERLO = Ablakvezerlo()
-        # Ablakok inicializálása
-        Ablakvezerlo.s_ablakok
+        # Ablakvezérlő, ablakok inicializálása
+        self.ABLAKVEZERLO = AV.Ablakvezerlo()
+        self.ABLAKVEZERLO.init_ablaklista({
+            "menu": AV.Ablak({
+                "start_gomb": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (0,0,0), 1)
+            }, (255,255,255)),
+            "jatek": AV.Ablak({
+                "grid": AV.Grid()
+            }, (255,255,255)),
+            "vegeredmeny": AV.Ablak({
+                "kilepes_gomb": AV.Negyszog()
+            }, (255,255,255))
+        })
     
     """
-    Tickre változó függvény
+    Játékfolyamat
     """
     def folyamat(self):
         while True:
-            # Kilépés kezelése
-            for i in pg.event.get():
-                if i.type == pg.QUIT:
-                    return
-            # Képfrissítés
-            pg.display.flip()
-            self.ORA.tick(self.FPS)
-            # Játékvezérlés
-            if self.JATEKVEZERLO.jatekallas == "menu":
-                Ablakvezerlo.rajzol("menu")
-            elif self.JATEKVEZERLO.jatekallas == "jatek":
-                Ablakvezerlo.rajzol("jatek")
-            elif self.JATEKVEZERLO.jatekallas == "vegeredmeny":
-                Ablakvezerlo.rajzol("vegeredmeny")
+            # A vezérlők frissítése
+            self.JATEKVEZERLO.frissit()
+            self.ABLAKVEZERLO.frissit(self.JATEKVEZERLO.g_jatekallas())
+            # Játékirányítás
+            if self.JATEKVEZERLO.g_jatekallas() == "menu":
+                print("Menü")
+            elif self.JATEKVEZERLO.g_jatekallas() == "jatek":
+                print("Játék")
+            elif self.JATEKVEZERLO.g_jatekallas() == "vegeredmeny":
+                print("Végeredmény")
 
 if __name__ == "__main__":
     jatek_peldany = Szokereso()
     jatek_peldany.folyamat()
-    exit()
