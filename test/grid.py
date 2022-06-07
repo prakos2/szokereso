@@ -5,8 +5,8 @@ wres = (res[0]//1.5, res[1]//1.5)
 screen = pg.display.set_mode(wres)
 fps = 60
 clock = pg.time.Clock()
-N = 12
-lambda_val = 50
+delta2 = 50
+N = 8
 while True:
     for i in pg.event.get():
         if i.type == pg.QUIT:
@@ -15,18 +15,17 @@ while True:
     clock.tick(fps)
     pg.display.update()
     screen.fill((169,52,12))
-    pg.draw.rect(screen, (0,0,0), pg.Rect((wres[0]/2)/2, lambda_val, (wres[0]/2), (wres[1]-lambda_val*2)), 2)
-    print(str((pg.mouse.get_pos()[0]-((wres[0]/2)/2))//(((wres[0]/2)/N))), 
-    str((pg.mouse.get_pos()[1]-((((wres[1]-lambda_val*2)/N))))//((wres[1]-lambda_val*2)/N)))
+    pg.draw.rect(screen, (0,0,0), pg.Rect(wres[0]/4, delta2, wres[0]/2, wres[1]-(delta2*2)), 2)
     for i in range(N):
         for j in range(N):
             pg.draw.rect(
                 screen,
-                (255,255/(i+1),255/(i+1*2)),
+                (255,255,255),
                 pg.Rect(
-                    ((wres[0]/2)/2)+(i*((wres[0]/2)/N)), 
-                    (lambda_val+(j*((wres[1]-lambda_val*2)/N))), 
-                    (wres[0]/2)/N, 
-                    (wres[1]-lambda_val*2)/N),
+                    wres[0]/4+i*(wres[0]/(2*N)), 
+                    delta2+(j*(wres[1]-delta2*2)/N), 
+                    wres[0]/(2*N), 
+                    (wres[1]-delta2*2)/N
+                    ),
                 1
             )

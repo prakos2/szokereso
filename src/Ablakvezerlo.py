@@ -30,13 +30,13 @@ class Gomb(Ablakkomponens):
         if type(szin) == tuple and len(szin) == 3:
             self.szin = szin
         else:
-            print("[Ablakvezerlo]: Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.")
+            print("[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.")
             self.szin = (0,0,0)
         # Vastagság
         if type(vastagsag) == int:
             self.vastagsag = vastagsag
         else:
-            print("[Ablakvezerlo]: Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.")
+            print("[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.")
             self.vastagsag = 1
 
     def rajzol(self, pg_felulet):
@@ -56,13 +56,13 @@ class Szoveg(Ablakkomponens):
 class Grid(Ablakkomponens):
     def __init__(self) -> None:
         super().__init__()
-    def rajzol(self, surface):
+    def rajzol(self, pg_felulet):
         pass
 
 class Negyszog(Ablakkomponens):
     def __init__(self) -> None:
         super().__init__()
-    def rajzol(self, surface):
+    def rajzol(self, pg_felulet):
         pass
 
 # Ablak
@@ -76,17 +76,17 @@ class Ablak():
         self.ELEMEK = {} # "nev":Ablakkomponens()
         if type(in_elemek) == dict:
             for i in in_elemek.keys():
-                if type(in_elemek[i]) == Gomb:
+                if type(in_elemek[i]).__bases__[0] == Ablakkomponens:
                     self.ELEMEK.update({i: in_elemek[i]})
                 else:
-                    print(f"[Ablakvezerlo]: Nem ablakkomponenst akar felvenni az ablakba ({str(type(in_elemek[i]))})")
+                    print(f"[F] [Ablakvezerlo] Nem ablakkomponenst akar felvenni az ablakba ({str(type(in_elemek[i]))})")
         # Háttérszín
         if type(hatterszin) == tuple:
             if len(hatterszin) == 3:
                 self.hatterszin = hatterszin
             else:
                 self.hatterszin = (125,0,0)
-                print("[Ablakvezerlo]: A háttérszín csak RGB tuple lehet. Alapértelmezett színre cserélés.")
+                print("[F] [Ablakvezerlo] A háttérszín csak RGB tuple lehet. Alapértelmezett színre cserélés.")
 
 # Ablakvezérlő
 
@@ -115,7 +115,7 @@ class Ablakvezerlo():
                 if len(in_ablakok[i].ELEMEK) > 0:
                     self.ABLAKOK.update({i: in_ablakok[i]})
                 else:
-                    print("[Ablakvezerlo] Egy ablak felvétele nem sikerült, mert egyetlen komponens sem megfelelő benne")
+                    print("[F] [Ablakvezerlo] Egy ablak felvétele nem sikerült, mert egyetlen komponens sem megfelelő benne")
 
     def frissit(self, jatekallas):
         # Események kezelése

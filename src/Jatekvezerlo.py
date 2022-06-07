@@ -19,7 +19,7 @@ class Jatekvezerlo():
         if in_jatekallas in self.JATEKALLASOK:
             self.jatekallas = in_jatekallas
         else:
-            raise Exception("[Jatekvezerlo] Megadott játékállás helytelen.")
+            raise Exception("[H] [Jatekvezerlo] Megadott játékállás helytelen.")
 
     # getter függvények
     def g_jatekallas(self):

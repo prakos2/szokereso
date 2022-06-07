@@ -13,7 +13,7 @@ def szavak_elhelyezese(random_szavak_szama,szavak_max_merete):
         while ciklus==True:
                 random_szo_szama=randint(0,len(SZAVAK[0]))
                 if len(SZAVAK[0][random_szo_szama])<=szavak_max_merete:
-                    random_szavak.append(szavak[0][random_szo_szama])
+                    random_szavak.append(SZAVAK[0][random_szo_szama])
                     ciklus=False
                 else:
                     ciklus=True
