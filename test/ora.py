@@ -1,40 +1,31 @@
-import pygame
-
-pygame.init()
-
-ablak=pygame.display.set_mode((128, 128))
-
-ora=pygame.time.Clock()
-
-masodperc_szamlalo=5
-masodperc_szoveg=str(masodperc_szamlalo)
-perc_szamlalo=2
-perc_szoveg=str(perc_szamlalo)
-
-pygame.time.set_timer(pygame.USEREVENT, 1000)
-
-BETUTIPUS=pygame.font.SysFont('Consolas', 30)
-
+import pygame as pg
+pg.init()
+FELBONTAS=(pg.display.Info().current_w, pg.display.Info().current_h)
+KEPERNYO=pg.display.set_mode((FELBONTAS[0]//1.5, FELBONTAS[1]//1.5))
+fps=60
+ora=pg.time.Clock()
+N=4
+BETUTIPUS=pg.font.SysFont('Consolas', 30)
+perc_szoveg=''
+masodperc_szoveg=''
 while True:
-    if masodperc_szamlalo!=0:
-        for i in pygame.event.get():
-            if i.type==pygame.USEREVENT: 
-                masodperc_szamlalo-=1
-                if masodperc_szamlalo>0:
-                    masodperc_szoveg=str(masodperc_szamlalo)
-                else:
-                    if perc_szamlalo!=0:
-                        perc_szamlalo-=1
-                        masodperc_szamlalo=60
-                        if perc_szamlalo==0:
-                            break
-                    else:
-                        break
+    cl = pg.time.Clock()
+    t = 600
+    cl.tick(60)
+    ct = pg.time.get_ticks()//1000
+    perc_szoveg=(t-ct)//60
+    masodperc_szoveg=(t-ct)%60
+    KEPERNYO.fill((0,0,0))
+    if perc_szoveg>=10:
+        if masodperc_szoveg>=10:
+            KEPERNYO.blit(BETUTIPUS.render(f"{perc_szoveg}:{masodperc_szoveg}", True, (255,255,255)), (32, 48))
         else:
-            ablak.fill((0,0,0))
-            ablak.blit(BETUTIPUS.render(f"{perc_szoveg}:{masodperc_szoveg}", True, (255,255,255)), (32, 48))
-            pygame.display.flip()
-            ora.tick(60)
-            continue
-        break
-    break
+            KEPERNYO.blit(BETUTIPUS.render(f"{perc_szoveg}:0{masodperc_szoveg}", True, (255,255,255)), (32, 48))
+    else:
+        if masodperc_szoveg>=10:
+            KEPERNYO.blit(BETUTIPUS.render(f"0{perc_szoveg}:{masodperc_szoveg}", True, (255,255,255)), (32, 48))
+        else:
+            KEPERNYO.blit(BETUTIPUS.render(f"0{perc_szoveg}:0{masodperc_szoveg}", True, (255,255,255)), (32, 48))
+        
+    ora.tick(fps)
+    pg.display.update()
