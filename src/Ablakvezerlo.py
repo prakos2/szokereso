@@ -54,13 +54,20 @@ class Gomb(Ablakkomponens):
 class Szoveg(Ablakkomponens):
     def __init__(self, pozicio, latszik, font, szoveg) -> None:
         super().__init__(pozicio=(0,0), latszik=True)
+        self.szoveg=szoveg
+        if type(pozicio)==tuple:
+            self.pozicio=pozicio
+        else:
+            print("[F] Ablakvezerlo] Nem adtad meg a pozíciót")
+            self.pozicio=(0,0)
         if type(font) == str:
             self.font = font
         else:
             print("[F] Ablakvezerlo] A betűtípust stringként kell megadni, de nem az")
             self.font = "Consolas"
+        self.iro=pg.font.SysFont('Consolas', 30)
     def rajzol(self, pg_felulet):
-        pass
+        pg_felulet.blit(self.iro.render(f"{self.szoveg}", True, (0,0,0)), self.pozicio)
 
 class Grid(Ablakkomponens):
     def __init__(self) -> None:
