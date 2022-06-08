@@ -76,8 +76,21 @@ class Grid(Ablakkomponens):
         pass
 
 class Negyszog(Ablakkomponens):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, pozicio, latszik, szin, vastagsag) -> None:
+        super().__init__(pozicio, latszik)
+    # Szín
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print("[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.")
+            self.szin = (0,0,0)
+        # Vastagság
+        if type(vastagsag) == int:
+            self.vastagsag = vastagsag
+        else:
+            print("[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.")
+            self.vastagsag = 1
+
     def rajzol(self, pg_felulet):
         pass
 

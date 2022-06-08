@@ -16,13 +16,14 @@ class Szokereso():
         self.ABLAKVEZERLO.init_ablaklista({
             "menu": AV.Ablak({
                 "start_gomb": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (255,0,0), 10),
-                "szoveg":AV.Szoveg(pozicio=(1,1),latszik=True,font="Consola",szoveg="teszt")
+                "szoveg":AV.Szoveg(pozicio=(1,1),latszik=True,font="Consola",szoveg="teszt"),
+                "negyszog":AV.Negyszog((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (0,0,0), 10)
             }, (255,255,255)),
             "jatek": AV.Ablak({
                 "grid": AV.Grid()
             }, (255,255,255)),
             "vegeredmeny": AV.Ablak({
-                "kilepes_gomb": AV.Negyszog()
+                "kilepes_gomb": AV.Negyszog((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (0,0,0), 10)
             }, (255,255,255))
         })
     
