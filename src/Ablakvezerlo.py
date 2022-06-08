@@ -78,7 +78,7 @@ class Grid(Ablakkomponens):
 class Negyszog(Ablakkomponens):
     def __init__(self, pozicio, latszik, szin, vastagsag) -> None:
         super().__init__(pozicio, latszik)
-    # Szín
+        # Szín
         if type(szin) == tuple and len(szin) == 3:
             self.szin = szin
         else:
