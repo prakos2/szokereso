@@ -1,6 +1,7 @@
 import pygame as pg
 from Jatekvezerlo import Jatekvezerlo
 import Ablakvezerlo as AV
+import Eszkozok
 
 class Szokereso():
     """
@@ -15,15 +16,31 @@ class Szokereso():
         self.ABLAKVEZERLO = AV.Ablakvezerlo()
         self.ABLAKVEZERLO.init_ablaklista({
             "menu": AV.Ablak({
-                "start_gomb": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (255,0,0), 10),
-                "szoveg":AV.Szoveg(pozicio=(1,1),latszik=True,font="Consola",szoveg="teszt"),
-                "negyszog":AV.Negyszog((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (0,0,0), 10)
-            }, (255,255,255)),
+                "start": AV.Gomb(
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//7)//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//1.7-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//7, self.ABLAKVEZERLO.g_ablakmeret()[1]//15),
+                    True,
+                    (255,255,255),
+                    2
+                ),
+                "kilepes": AV.Gomb(
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//7)//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//1.5-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//7, self.ABLAKVEZERLO.g_ablakmeret()[1]//15),
+                    True,
+                    (255,255,255),
+                    2
+                ),
+            }, (233,179,94)),
             "jatek": AV.Ablak({
-                "grid": AV.Grid()
+                "time": AV.Szoveg(
+                    (0,0),
+                    True,
+                    "Arial",
+                    "0"
+                )
             }, (255,255,255)),
             "vegeredmeny": AV.Ablak({
-                "kilepes_gomb": AV.Negyszog((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (0,0,0), 10)
+                "gridv": AV.Grid()
             }, (255,255,255))
         })
     
@@ -32,16 +49,29 @@ class Szokereso():
     """
     def folyamat(self):
         while True:
-            # A vezérlők frissítése
-            self.JATEKVEZERLO.frissit()
-            self.ABLAKVEZERLO.frissit(self.JATEKVEZERLO.g_jatekallas())
-            # Játékirányítás
-            if self.JATEKVEZERLO.g_jatekallas() == "menu":
-                pass
-            elif self.JATEKVEZERLO.g_jatekallas() == "jatek":
-                pass
-            elif self.JATEKVEZERLO.g_jatekallas() == "vegeredmeny":
-                pass
+            try:
+                # A vezérlők frissítése
+                self.JATEKVEZERLO.frissit()
+                self.ABLAKVEZERLO.frissit(self.JATEKVEZERLO.g_jatekallas())
+                # Játékirányítás
+                if self.JATEKVEZERLO.g_jatekallas() == "menu":
+                    if self.ABLAKVEZERLO.ABLAKOK["menu"].ELEMEK["start"].g_lenyomva() == True:
+                        self.JATEKVEZERLO.s_uj_jatek(10) # Új 10 perces játék
+                        self.JATEKVEZERLO.s_jatekallas("jatek")
+                    elif self.ABLAKVEZERLO.ABLAKOK["menu"].ELEMEK["kilepes"].g_lenyomva() == True:
+                        pg.quit()
+                        exit()
+                elif self.JATEKVEZERLO.g_jatekallas() == "jatek":
+                    # Visszaszámláló óra frissítése
+                    self.ABLAKVEZERLO.ABLAKOK["jatek"].ELEMEK["time"].frissit(
+                        Eszkozok.idoformat(self.JATEKVEZERLO.jatek_adatok["jatekido"]-pg.time.get_ticks()//1000)
+                    )
+                elif self.JATEKVEZERLO.g_jatekallas() == "vegeredmeny":
+                    pass
+            except:
+                # "crash" előidézése hogy a program ne lépjen "nem válaszol" állapotba fatális kivétel esetén
+                pg.quit()
+                exit()
 
 if __name__ == "__main__":
     jatek_peldany = Szokereso()

@@ -1,13 +1,17 @@
 import pygame as pg
 
 # Globális változók
-gomb_lenyomva = False # Bal egérgomb lenyomva
+_gomb_lenyomva = False # Bármely egérgomb lenyomva
 
 # Ablakkomponensek
 
 class Ablakkomponens():
-    def __init__(self, pozicio = (0,0), latszik = True) -> None:
-        self.pozicio = pozicio
+    def __init__(self, pozicio = (0,0), dimenziok = (0,0), latszik = True) -> None:
+        if (type(pozicio) == tuple and len(pozicio) == 2) and (type(dimenziok) == tuple and len(dimenziok) == 2):
+            self.pozicio = pozicio
+            self.dimenziok = dimenziok
+        else:
+            print("[F] [Ablakvezerlo] A megadott koordinátaértékekben hibák találhatóak. Helyes szintaxis: tuple (x, y)")
         self.latszik = latszik
 
     def s_latszik(self, ertek):
@@ -17,9 +21,6 @@ class Ablakkomponens():
     def g_latszik(self):
         return self.latszik
 
-    def g_kurzorpoz(self):
-        return pg.mouse.get_cursor()
-
     def rajzol(self, pg_felulet):
         '''
         Alakzat rajzolása
@@ -27,8 +28,76 @@ class Ablakkomponens():
         pass
 
 class Gomb(Ablakkomponens):
-    def __init__(self, pozicio, latszik, szin, vastagsag) -> None:
-        super().__init__(pozicio, latszik)
+    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag, szoveg="") -> None:
+        super().__init__(pozicio, dimenziok, latszik)
+        # Szín
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print("[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.")
+            self.szin = (0,0,0)
+        # Vastagság
+        if type(vastagsag) == int:
+            self.vastagsag = vastagsag
+        else:
+            print("[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.")
+            self.vastagsag = 1
+        # Szöveg
+        if type(szoveg) == str:
+            if szoveg != "":
+                self.szoveg = szoveg
+        else:
+            print("[F] [Ablakvezerlo] A szöveg csak string lehet")
+
+
+    def rajzol(self, pg_felulet):
+        pg.draw.rect(pg_felulet, self.szin, pg.Rect(self.pozicio[0], self.pozicio[1], 
+        self.dimenziok[0], self.dimenziok[1]), self.vastagsag)
+        
+    def g_lenyomva(self):
+        '''
+        Le van-e nyomva a gomb
+        '''
+        kurzor_poz = pg.mouse.get_pos()
+        if _gomb_lenyomva == True:
+            # ellenőrzés x, y tengelyre
+            if (kurzor_poz[0] > self.pozicio[0] and kurzor_poz[0] < self.pozicio[0]+self.dimenziok[0]) and (kurzor_poz[1] > self.pozicio[1] and kurzor_poz[1] < self.pozicio[1]+self.dimenziok[1]):
+                return True
+            else:
+                return False
+
+class Szoveg(Ablakkomponens):
+    def __init__(self, pozicio, latszik, font, szoveg) -> None:
+        super().__init__(pozicio, (0,0), latszik)
+        if type(szoveg) == str:
+            self.szoveg=szoveg
+        else:
+            self.szoveg="*HIBÁS*"
+        if type(pozicio)==tuple:
+            self.pozicio=pozicio
+        else:
+            print("[F] Ablakvezerlo] Nem adtad meg a pozíciót")
+            self.pozicio=(0,0)
+        if type(font) == str:
+            self.font = font
+        else:
+            print("[F] Ablakvezerlo] A betűtípust stringként kell megadni, de nem az")
+            self.font = "Consolas"
+        self.iro=pg.font.SysFont(self.font, 30)
+    def rajzol(self, pg_felulet):
+        pg_felulet.blit(self.iro.render(f"{self.szoveg}", True, (0,0,0)), self.pozicio)
+    def frissit(self, szoveg):
+        self.szoveg = szoveg
+
+class Grid(Ablakkomponens):
+    def __init__(self) -> None:
+        super().__init__()
+    def rajzol(self, pg_felulet):
+        pass
+
+class Negyszog(Ablakkomponens):
+    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag) -> None:
+        super().__init__(pozicio, dimenziok, latszik)
         # Szín
         if type(szin) == tuple and len(szin) == 3:
             self.szin = szin
@@ -44,55 +113,6 @@ class Gomb(Ablakkomponens):
 
     def rajzol(self, pg_felulet):
         pg.draw.rect(pg_felulet, self.szin, pg.Rect(0,0, self.pozicio[0], self.pozicio[1]), self.vastagsag)
-        
-    def g_lenyomva(self):
-        '''
-        Le van-e nyomva a gomb
-        '''
-        return False
-
-class Szoveg(Ablakkomponens):
-    def __init__(self, pozicio, latszik, font, szoveg) -> None:
-        super().__init__(pozicio=(0,0), latszik=True)
-        self.szoveg=szoveg
-        if type(pozicio)==tuple:
-            self.pozicio=pozicio
-        else:
-            print("[F] Ablakvezerlo] Nem adtad meg a pozíciót")
-            self.pozicio=(0,0)
-        if type(font) == str:
-            self.font = font
-        else:
-            print("[F] Ablakvezerlo] A betűtípust stringként kell megadni, de nem az")
-            self.font = "Consolas"
-        self.iro=pg.font.SysFont('Consolas', 30)
-    def rajzol(self, pg_felulet):
-        pg_felulet.blit(self.iro.render(f"{self.szoveg}", True, (0,0,0)), self.pozicio)
-
-class Grid(Ablakkomponens):
-    def __init__(self) -> None:
-        super().__init__()
-    def rajzol(self, pg_felulet):
-        pass
-
-class Negyszog(Ablakkomponens):
-    def __init__(self, pozicio, latszik, szin, vastagsag) -> None:
-        super().__init__(pozicio, latszik)
-        # Szín
-        if type(szin) == tuple and len(szin) == 3:
-            self.szin = szin
-        else:
-            print("[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.")
-            self.szin = (0,0,0)
-        # Vastagság
-        if type(vastagsag) == int:
-            self.vastagsag = vastagsag
-        else:
-            print("[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.")
-            self.vastagsag = 1
-
-    def rajzol(self, pg_felulet):
-        pass
 
 # Ablak
 
@@ -146,16 +166,16 @@ class Ablakvezerlo():
                     print("[F] [Ablakvezerlo] Egy ablak felvétele nem sikerült, mert egyetlen komponens sem megfelelő benne")
 
     def frissit(self, jatekallas):
-        global gomb_lenyomva
+        global _gomb_lenyomva
         # Események kezelése
         for i in pg.event.get():
             if i.type == pg.QUIT:
                 pg.quit()
                 exit()
             elif i.type == pg.MOUSEBUTTONDOWN:
-                gomb_lenyomva = True
+                _gomb_lenyomva = True
             elif i.type == pg.MOUSEBUTTONUP:
-                gomb_lenyomva = False
+                _gomb_lenyomva = False
         # Képfrissítés
         self.PG_CLOCK.tick(self.FPS)
         pg.display.update()
