@@ -3,7 +3,7 @@ from random import randint
 def szavak_elhelyezese(random_szavak_szama,szavak_max_merete):
     SZAVAK=[]
     #fajlbeolvasas es fajlrendezes
-    with open("C:\\Users\\Komlósi Ádám\\Desktop\\szokereso\\assets\\szavak.txt",'r',encoding='utf-8-sig') as fajl:
+    with open(r".\assets\szavak.txt",'r',encoding='utf-8-sig') as fajl:
         for i in fajl:
             SZAVAK.append(i.split(';'))
     #random szo generalas es szavak max merete
