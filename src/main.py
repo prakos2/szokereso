@@ -15,7 +15,7 @@ class Szokereso():
         self.ABLAKVEZERLO = AV.Ablakvezerlo()
         self.ABLAKVEZERLO.init_ablaklista({
             "menu": AV.Ablak({
-                "start_gomb": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (0,0,0), 1)
+                "start_gomb": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2), True, (255,0,0), 10)
             }, (255,255,255)),
             "jatek": AV.Ablak({
                 "grid": AV.Grid()
@@ -35,11 +35,11 @@ class Szokereso():
             self.ABLAKVEZERLO.frissit(self.JATEKVEZERLO.g_jatekallas())
             # Játékirányítás
             if self.JATEKVEZERLO.g_jatekallas() == "menu":
-                print("Menü")
+                pass
             elif self.JATEKVEZERLO.g_jatekallas() == "jatek":
-                print("Játék")
+                pass
             elif self.JATEKVEZERLO.g_jatekallas() == "vegeredmeny":
-                print("Végeredmény")
+                pass
 
 if __name__ == "__main__":
     jatek_peldany = Szokereso()

@@ -1,7 +1,7 @@
 import pygame as pg
 
-def g_kurzorpoz():
-    return pg.mouse.get_cursor()
+# Globális változók
+gomb_lenyomva = False # Bal egérgomb lenyomva
 
 # Ablakkomponensek
 
@@ -28,7 +28,7 @@ class Ablakkomponens():
 
 class Gomb(Ablakkomponens):
     def __init__(self, pozicio, latszik, szin, vastagsag) -> None:
-        super().__init__(pozicio=(0,0), latszik=True)
+        super().__init__(pozicio, latszik)
         # Szín
         if type(szin) == tuple and len(szin) == 3:
             self.szin = szin
@@ -43,7 +43,8 @@ class Gomb(Ablakkomponens):
             self.vastagsag = 1
 
     def rajzol(self, pg_felulet):
-        pg.draw.rect(pg_felulet, self.szin, pg.Rect(0,0,self.pozicio[0], self.pozicio[1]), self.vastagsag)
+        pg.draw.rect(pg_felulet, self.szin, pg.Rect(0,0, self.pozicio[0], self.pozicio[1]), self.vastagsag)
+        
     def g_lenyomva(self):
         '''
         Le van-e nyomva a gomb
@@ -51,14 +52,14 @@ class Gomb(Ablakkomponens):
         return False
 
 class Szoveg(Ablakkomponens):
-    def __init__(self, pozicio, latszik, font) -> None:
+    def __init__(self, pozicio, latszik, font, szoveg) -> None:
         super().__init__(pozicio=(0,0), latszik=True)
         if type(font) == str:
             self.font = font
         else:
             print("[F] Ablakvezerlo] A betűtípust stringként kell megadni, de nem az")
             self.font = "Consolas"
-    def rajzol(self):
+    def rajzol(self, pg_felulet):
         pass
 
 class Grid(Ablakkomponens):
@@ -117,7 +118,6 @@ class Ablakvezerlo():
         '''
         Ablakok inicializálása, dictionaryt vár. Formátum: "jatekallas": Ablak()
         '''
-        self.ABLAKOK = {}
         for i in in_ablakok.keys():
             if type(in_ablakok[i]) == Ablak:
                 if len(in_ablakok[i].ELEMEK) > 0:
@@ -126,11 +126,16 @@ class Ablakvezerlo():
                     print("[F] [Ablakvezerlo] Egy ablak felvétele nem sikerült, mert egyetlen komponens sem megfelelő benne")
 
     def frissit(self, jatekallas):
+        global gomb_lenyomva
         # Események kezelése
         for i in pg.event.get():
             if i.type == pg.QUIT:
                 pg.quit()
                 exit()
+            elif i.type == pg.MOUSEBUTTONDOWN:
+                gomb_lenyomva = True
+            elif i.type == pg.MOUSEBUTTONUP:
+                gomb_lenyomva = False
         # Képfrissítés
         self.PG_CLOCK.tick(self.FPS)
         pg.display.update()
