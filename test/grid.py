@@ -16,8 +16,7 @@ while True:
     pg.display.update()
     screen.fill((169,52,12))
     pg.draw.rect(screen, (0,0,0), pg.Rect(wres[0]/4, delta2, wres[0]/2, wres[1]-(delta2*2)), 2)
-    #print((pg.mouse.get_pos()[1]-wres[0]/4)//(wres[0]/(2*N)))
-    print((pg.mouse.get_pos()[1]-wres[0]/4+delta2)//(wres[0]/(2*N))+1)
+    print((pg.mouse.get_pos()[0]-wres[0]/4)//(wres[0]/(2*N)),(pg.mouse.get_pos()[1]-delta2)//((wres[1]-delta2*2)//N))
     for i in range(N):
         for j in range(N):
             pg.draw.rect(
