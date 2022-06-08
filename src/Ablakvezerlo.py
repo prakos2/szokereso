@@ -1,5 +1,8 @@
 import pygame as pg
 
+def g_kurzorpoz():
+    return pg.mouse.get_cursor()
+
 # Ablakkomponensek
 
 class Ablakkomponens():
@@ -25,7 +28,7 @@ class Ablakkomponens():
 
 class Gomb(Ablakkomponens):
     def __init__(self, pozicio, latszik, szin, vastagsag) -> None:
-        super().__init__(pozicio, latszik)
+        super().__init__(pozicio=(0,0), latszik=True)
         # Szín
         if type(szin) == tuple and len(szin) == 3:
             self.szin = szin
@@ -48,8 +51,13 @@ class Gomb(Ablakkomponens):
         return False
 
 class Szoveg(Ablakkomponens):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, pozicio, latszik, font) -> None:
+        super().__init__(pozicio=(0,0), latszik=True)
+        if type(font) == str:
+            self.font = font
+        else:
+            print("[F] Ablakvezerlo] A betűtípust stringként kell megadni, de nem az")
+            self.font = "Consolas"
     def rajzol(self):
         pass
 
