@@ -16,19 +16,40 @@ class Szokereso():
         self.ABLAKVEZERLO = AV.Ablakvezerlo()
         self.ABLAKVEZERLO.init_ablaklista({
             "menu": AV.Ablak({
+                "cim": AV.Szoveg(
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//3),
+                    True,
+                    "Consolas",
+                    "Szókereső",
+                    True
+                ),
                 "start": AV.Gomb(
-                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//7)//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//1.7-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2),
-                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//7, self.ABLAKVEZERLO.g_ablakmeret()[1]//15),
+                    (
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//5)//2, 
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//1.7-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2
+                    ),
+                    (
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//5, 
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//15
+                    ),
                     True,
                     (255,255,255),
-                    2
+                    2,
+                    "Start"
                 ),
                 "kilepes": AV.Gomb(
-                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//7)//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//1.5-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2),
-                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//7, self.ABLAKVEZERLO.g_ablakmeret()[1]//15),
+                    (
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//5)//2, 
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//1.5-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2
+                    ),
+                    (
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//5, 
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//15
+                    ),
                     True,
                     (255,255,255),
-                    2
+                    2,
+                    "Kilépés"
                 ),
             }, (233,179,94)),
             "jatek": AV.Ablak({
@@ -56,7 +77,7 @@ class Szokereso():
                 # Játékirányítás
                 if self.JATEKVEZERLO.g_jatekallas() == "menu":
                     if self.ABLAKVEZERLO.ABLAKOK["menu"].ELEMEK["start"].g_lenyomva() == True:
-                        self.JATEKVEZERLO.s_uj_jatek(10) # Új 10 perces játék
+                        self.JATEKVEZERLO.s_uj_jatek(600) # Új 10 perces játék
                         self.JATEKVEZERLO.s_jatekallas("jatek")
                     elif self.ABLAKVEZERLO.ABLAKOK["menu"].ELEMEK["kilepes"].g_lenyomva() == True:
                         pg.quit()
@@ -68,8 +89,9 @@ class Szokereso():
                     )
                 elif self.JATEKVEZERLO.g_jatekallas() == "vegeredmeny":
                     pass
-            except:
+            except Exception as kivetel:
                 # "crash" előidézése hogy a program ne lépjen "nem válaszol" állapotba fatális kivétel esetén
+                print("crash: " + str(kivetel))
                 pg.quit()
                 exit()
 

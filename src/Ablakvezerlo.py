@@ -27,8 +27,41 @@ class Ablakkomponens():
         '''
         pass
 
+class Szoveg(Ablakkomponens):
+    def __init__(self, pozicio, latszik, font, szoveg, kozep_origo = False) -> None:
+        super().__init__(pozicio, (0,0), latszik)
+        
+        if type(szoveg) == str:
+            self.szoveg=szoveg
+        else:
+            self.szoveg="*HIBÁS*"
+
+        if type(font) == str:
+            self.font = font
+        else:
+            print("[F] Ablakvezerlo] A betűtípust stringként kell megadni, de nem az")
+            self.font = "Consolas"
+        self.iro=pg.font.SysFont(self.font, 30)
+
+        if type(pozicio)==tuple:
+            if kozep_origo == True:
+                self.pozicio=(
+                    pozicio[0]-(self.iro.size(self.szoveg)[0]//2),
+                    pozicio[1]-(self.iro.size(self.szoveg)[1]//2)
+                )
+            else:
+                self.pozicio = pozicio
+        else:
+            print("[F] Ablakvezerlo] Nem adtad meg a pozíciót")
+            self.pozicio=(0,0)
+        
+    def rajzol(self, pg_felulet):
+        pg_felulet.blit(self.iro.render(f"{self.szoveg}", True, (0,0,0)), self.pozicio)
+    def frissit(self, szoveg):
+        self.szoveg = szoveg
+
 class Gomb(Ablakkomponens):
-    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag, szoveg="") -> None:
+    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag, in_szoveg="", font="Consolas") -> None:
         super().__init__(pozicio, dimenziok, latszik)
         # Szín
         if type(szin) == tuple and len(szin) == 3:
@@ -43,9 +76,14 @@ class Gomb(Ablakkomponens):
             print("[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.")
             self.vastagsag = 1
         # Szöveg
-        if type(szoveg) == str:
-            if szoveg != "":
-                self.szoveg = szoveg
+        if type(in_szoveg) == str:
+            self.szoveg = Szoveg(
+                (self.pozicio[0]+(self.dimenziok[0]//2), self.pozicio[1]+(self.dimenziok[1]//2)),
+                True,
+                font,
+                in_szoveg,
+                True
+            )
         else:
             print("[F] [Ablakvezerlo] A szöveg csak string lehet")
 
@@ -53,6 +91,7 @@ class Gomb(Ablakkomponens):
     def rajzol(self, pg_felulet):
         pg.draw.rect(pg_felulet, self.szin, pg.Rect(self.pozicio[0], self.pozicio[1], 
         self.dimenziok[0], self.dimenziok[1]), self.vastagsag)
+        self.szoveg.rajzol(pg_felulet)
         
     def g_lenyomva(self):
         '''
@@ -65,29 +104,6 @@ class Gomb(Ablakkomponens):
                 return True
             else:
                 return False
-
-class Szoveg(Ablakkomponens):
-    def __init__(self, pozicio, latszik, font, szoveg) -> None:
-        super().__init__(pozicio, (0,0), latszik)
-        if type(szoveg) == str:
-            self.szoveg=szoveg
-        else:
-            self.szoveg="*HIBÁS*"
-        if type(pozicio)==tuple:
-            self.pozicio=pozicio
-        else:
-            print("[F] Ablakvezerlo] Nem adtad meg a pozíciót")
-            self.pozicio=(0,0)
-        if type(font) == str:
-            self.font = font
-        else:
-            print("[F] Ablakvezerlo] A betűtípust stringként kell megadni, de nem az")
-            self.font = "Consolas"
-        self.iro=pg.font.SysFont(self.font, 30)
-    def rajzol(self, pg_felulet):
-        pg_felulet.blit(self.iro.render(f"{self.szoveg}", True, (0,0,0)), self.pozicio)
-    def frissit(self, szoveg):
-        self.szoveg = szoveg
 
 class Grid(Ablakkomponens):
     def __init__(self) -> None:
