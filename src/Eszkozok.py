@@ -6,9 +6,6 @@ def idoformat(t):
 def szokeres(szavak,n):
     tomb=[]
     for i in szavak:
-        if i<=n:
+        if len(i)<=n:
             tomb.append(i)
-    return tomb[random.randint(0,len(tomb))]
-
-szavak=["aaa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa"]
-szokeres(szavak,4)
+    return (random.randint(0,len(tomb)-1))
