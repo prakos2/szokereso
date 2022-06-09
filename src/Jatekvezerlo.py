@@ -10,6 +10,19 @@ class Jatekvezerlo():
             "szint": 0,              # jelenlegi szint
             "jatekido": 0            # s
         }
+        # Szavak listája
+        self.szavak = []
+        try:
+            with open("./assets/szavak.txt", encoding="utf-8-sig") as SZAVAK_FAJL:
+                for i in SZAVAK_FAJL.readlines():
+                    try:
+                        for j in i.split(';'):
+                            self.szavak.append(j)
+                    except Exception as kivetel:
+                        print(f"[F] [Jatekvezerlo] Hiba a sor beolvasása közben: {str(kivetel)}")
+        except Exception as kivetel:
+            print(f"[H] [Jatekvezerlo] Fatális hiba a fájl beolvasása közben: {str(kivetel)}")
+        print(self.szavak)
 
     def frissit(self):
         pass
@@ -28,7 +41,7 @@ class Jatekvezerlo():
         if in_jatekallas in self.JATEKALLASOK:
             self.jatekallas = in_jatekallas
         else:
-            raise Exception("[H] [Jatekvezerlo] Megadott játékállás helytelen.")
+            print("[F] [Jatekvezerlo] Megadott játékállás helytelen.")
 
     # getter függvények
     def g_jatekallas(self):

@@ -1,5 +1,6 @@
 import pygame as pg
 import math
+import random
 
 pg.init() 
 res = (pg.display.Info().current_w, pg.display.Info().current_h)
@@ -11,6 +12,7 @@ delta2 = 50
 N = 8
 eger_le = False
 selection = []
+betuk = [[chr(random.randint(70,100)) for x in range(N)] for j in range(N)]
 while True:
     for i in pg.event.get():
         if i.type == pg.QUIT:
@@ -29,7 +31,6 @@ while True:
         coords = (math.trunc(pg.mouse.get_pos()[0]-wres[0]/4)//(wres[0]/(2*N)), math.trunc(pg.mouse.get_pos()[1]-delta2)//((wres[1]-delta2*2)//N))
         if coords not in selection:
             selection.append(coords)
-    print(selection)
     for i in range(N):
         for j in range(N):
             if (i,j) in selection:

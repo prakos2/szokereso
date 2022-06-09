@@ -43,7 +43,7 @@ class Szokereso():
                         self.ABLAKVEZERLO.g_ablakmeret()[1]//1.5-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2
                     ),
                     (
-                        self.ABLAKVEZERLO.g_ablakmeret()[0]//5, 
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//5,
                         self.ABLAKVEZERLO.g_ablakmeret()[1]//15
                     ),
                     True,
