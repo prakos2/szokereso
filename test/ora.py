@@ -25,6 +25,6 @@ while True:
             KEPERNYO.blit(BETUTIPUS.render(f"0{perc_szoveg}:{masodperc_szoveg}", True, (255,255,255)), (32, 48))
         else:
             KEPERNYO.blit(BETUTIPUS.render(f"0{perc_szoveg}:0{masodperc_szoveg}", True, (255,255,255)), (32, 48))
-        
+
     ora.tick(fps)
     pg.display.update()
