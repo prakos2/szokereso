@@ -58,13 +58,17 @@ class Szokereso():
                     True,
                     "Arial",
                     "0"
+                ),
+                "racs": AV.Grid(
+                    (0,0),
+                    (500,500),
+                    True,
+                    8,
+                    (0,0,0)
                 )
-            }, (255,255,255)),
-            "vegeredmeny": AV.Ablak({
-                "gridv": AV.Grid()
             }, (255,255,255))
         })
-        self.JATEKVEZERLO.grid_general(4)
+        self.JATEKVEZERLO.grid_general(8, 8)
     
     """
     Játékfolyamat
