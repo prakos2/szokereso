@@ -106,10 +106,35 @@ class Gomb(Ablakkomponens):
                 return False
 
 class Grid(Ablakkomponens):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, pozicio, dimenziok, latszik, feloszt_meret, szin) -> None:
+        super().__init__(pozicio, dimenziok, latszik)
+
+        if type(feloszt_meret) == int:
+            self.feloszt_meret = feloszt_meret
+        else:
+            print("[F] [Ablakvezerlo] A méret egész szám lehet")
+            self.feloszt_meret = 2
+
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print("[F] [Ablakvezerlo] A szín tuple RGB lehet")
+            self.szin = (0,0,0)
+
     def rajzol(self, pg_felulet):
-        pass
+        for i in range(self.feloszt_meret):
+            for j in range(self.feloszt_meret):
+                pg.draw.rect(
+                    pg_felulet,
+                    self.szin,
+                    pg.Rect(
+                        self.pozicio[0]+i*(self.dimenziok[0]/self.feloszt_meret),
+                        self.pozicio[1]+j*(self.dimenziok[1]/self.feloszt_meret),
+                        self.dimenziok[0]/(self.feloszt_meret),
+                        self.dimenziok[1]/(self.feloszt_meret)
+                    ),
+                    1
+                )
 
 class Negyszog(Ablakkomponens):
     def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag) -> None:
