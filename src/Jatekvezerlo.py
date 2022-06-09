@@ -1,4 +1,6 @@
 import pygame as pg
+import random
+import Eszkozok
 
 class Jatekvezerlo():
     def __init__(self):
@@ -23,6 +25,8 @@ class Jatekvezerlo():
         except Exception as kivetel:
             print(f"[H] [Jatekvezerlo] Fatális hiba a fájl beolvasása közben: {str(kivetel)}")
         print(self.szavak)
+        # Szórács
+        self.szo_grid = []
 
     def frissit(self):
         pass
@@ -46,3 +50,16 @@ class Jatekvezerlo():
     # getter függvények
     def g_jatekallas(self):
         return self.jatekallas
+    
+    # eszközök
+    def grid_general(self, N, max_szavak):
+        self.szo_grid = [[0 for x in range(N)] for j in range(N)]
+        for i in max_szavak:
+            r_koord = (random.randint(0, N-1), random.randint(0, N-1))
+            tengely = random.randint(1)
+            if tengely == 0:
+                # vízszint
+                Eszkozok.szokeres(self.szavak, N)
+            else:
+                # függőleges
+                Eszkozok.szokeres(self.szavak, N)

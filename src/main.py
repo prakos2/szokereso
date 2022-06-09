@@ -64,6 +64,7 @@ class Szokereso():
                 "gridv": AV.Grid()
             }, (255,255,255))
         })
+        self.JATEKVEZERLO.grid_general(4)
     
     """
     Játékfolyamat
