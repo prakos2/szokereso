@@ -17,7 +17,7 @@ class Szokereso():
         self.ABLAKVEZERLO.init_ablaklista({
             "menu": AV.Ablak({
                 "cim": AV.Szoveg(
-                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//3),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2),
                     True,
                     "Consolas",
                     "Szókereső",
@@ -25,8 +25,8 @@ class Szokereso():
                 ),
                 "start": AV.Gomb(
                     (
-                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//5)//2, 
-                        self.ABLAKVEZERLO.g_ablakmeret()[1]//1.7-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//5)//2,
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//2
                     ),
                     (
                         self.ABLAKVEZERLO.g_ablakmeret()[0]//5, 
@@ -54,21 +54,22 @@ class Szokereso():
             }, (233,179,94)),
             "jatek": AV.Ablak({
                 "time": AV.Szoveg(
-                    (0,0),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 20),
                     True,
                     "Arial",
-                    "0"
+                    "0",
+                    True
                 ),
                 "racs": AV.Grid(
-                    (0,0),
-                    (500,500),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//2/2),self.ABLAKVEZERLO.g_ablakmeret()[1]//2-(self.ABLAKVEZERLO.g_ablakmeret()[1]//2/2)),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2,self.ABLAKVEZERLO.g_ablakmeret()[1]//2),
                     True,
                     8,
                     (0,0,0)
                 )
             }, (255,255,255))
         })
-        self.JATEKVEZERLO.grid_general(8, 8)
+        #self.JATEKVEZERLO.grid_general(8, 8)
     
     """
     Játékfolyamat
@@ -92,6 +93,7 @@ class Szokereso():
                     self.ABLAKVEZERLO.ABLAKOK["jatek"].ELEMEK["time"].frissit(
                         Eszkozok.idoformat(self.JATEKVEZERLO.jatek_adatok["jatekido"]-pg.time.get_ticks()//1000)
                     )
+                    print(self.ABLAKVEZERLO.ABLAKOK["jatek"].ELEMEK["racs"].g_valasztas())
                 elif self.JATEKVEZERLO.g_jatekallas() == "vegeredmeny":
                     pass
             except Exception as kivetel:

@@ -23,6 +23,7 @@ while True:
         elif i.type == pg.MOUSEBUTTONUP:
             eger_le = False
             selection = []
+    N = pg.time.get_ticks()//1000
     clock.tick(fps)
     pg.display.update()
     screen.fill((169,52,12))
