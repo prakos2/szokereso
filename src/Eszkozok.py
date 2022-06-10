@@ -8,19 +8,18 @@ def szokeres(szavak,n):
     for i in range(len(szavak)):
         if len(szavak[i])<=n:
             tomb.append(szavak[i])
-    for i in range(len(tomb)):
-        return tomb
+    return tomb[random.randint(0,len(tomb)-1)]
 
 def szo_elhelyezes(szavak,n):
     szo_grid = [[0 for x in range(n)] for j in range(n)]
     for i in szavak:
-        koordinata=(random.randint(0,n-1),random.randint(0,n-1))#allista, elem
-        szo_grid[koordinata[0]][koordinata[1]]="M"
+        koordinata=(random.randint(0,n-1),random.randint(0,n-1)) # allista, elem
         for j in szo_grid:
             print(j)
         print(n-koordinata[1])
         if len(i)<=n-koordinata[1]:
-            print("megfelel")
+            for i in range(n-koordinata[1], len(i)-1):
+                szo_grid[i] = szavak[i]
         else:
             print("nem felel meg")
 

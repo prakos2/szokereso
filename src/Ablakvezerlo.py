@@ -120,13 +120,28 @@ class Grid(Ablakkomponens):
         else:
             print("[F] [Ablakvezerlo] A szín tuple RGB lehet")
             self.szin = (0,0,0)
+        self.koordinatak = []
 
     def rajzol(self, pg_felulet):
+        koordinatak = (
+            (pg.mouse.get_pos()[0]-self.pozicio[0])//(self.dimenziok[0]/(self.feloszt_meret)), 
+            (pg.mouse.get_pos()[1]-self.pozicio[1])//(self.dimenziok[1]/(self.feloszt_meret))
+        )
+        if _gomb_lenyomva == True:
+            if koordinatak not in self.koordinatak:
+                self.koordinatak.append(koordinatak)
+        elif _gomb_lenyomva == False:
+            self.koordinatak = []
+
         for i in range(self.feloszt_meret):
             for j in range(self.feloszt_meret):
+                if (i, j) in self.koordinatak:
+                    szin = (255,0,0)
+                else:
+                    szin = self.szin
                 pg.draw.rect(
                     pg_felulet,
-                    self.szin,
+                    szin,
                     pg.Rect(
                         self.pozicio[0]+i*(self.dimenziok[0]/self.feloszt_meret),
                         self.pozicio[1]+j*(self.dimenziok[1]/self.feloszt_meret),
@@ -135,6 +150,14 @@ class Grid(Ablakkomponens):
                     ),
                     1
                 )
+                wbetu=pg.font.SysFont("Verdana", 30)
+                pg_felulet.blit(wbetu.render("A", True, (0,0,0)), (
+                    self.pozicio[0]+i*(self.dimenziok[0]/self.feloszt_meret),
+                    self.pozicio[1]+j*(self.dimenziok[1]/self.feloszt_meret)
+                ))
+                
+    def g_valasztas(self):
+        return self.koordinatak
 
 class Negyszog(Ablakkomponens):
     def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag) -> None:
