@@ -24,7 +24,7 @@ class Jatekvezerlo():
         # Szavak listája
         self.szavak_adatbazis = []
         try:
-            with open(r"M:\[ISKOLA]\2022-projekt\szokereso\assets\szavak.txt", encoding="utf-8-sig") as SZAVAK_FAJL:
+            with open(r".\assets\szavak.txt", encoding="utf-8-sig") as SZAVAK_FAJL:
                 for i in SZAVAK_FAJL.readlines():
                     try:
                         for j in i.split(';'):
