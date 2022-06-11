@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>Ablakvezerlo API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>Ablakvezerlo</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import pygame as pg
+import Eszkozok
+
+# Globális változók
+_gomb_lenyomva = False # Bármely egérgomb lenyomva
+_FELBONTAS = () # A teljes képernyő felbontása, inicializáláskor kap értéket
+
+# Ablakkomponensek
+
+class Ablakkomponens():
+    def __init__(self, pozicio = (0,0), dimenziok = (0,0), latszik = True):
+        if (type(pozicio) == tuple and len(pozicio) == 2) and (type(dimenziok) == tuple and len(dimenziok) == 2):
+            self.pozicio = pozicio
+            self.dimenziok = dimenziok
+        else:
+            print(&#34;[F] [Ablakvezerlo] A megadott koordinátaértékekben hibák találhatóak. Helyes szintaxis: tuple (x, y)&#34;)
+        self.latszik = latszik
+
+    def s_latszik(self, ertek):
+        if ertek != self.latszik:
+            self.latszik = ertek
+    
+    def g_latszik(self):
+        return self.latszik
+
+    def rajzol(self, pg_felulet):
+        &#39;&#39;&#39;
+        Alakzat rajzolása
+        &#39;&#39;&#39;
+        pass
+
+class Szoveg(Ablakkomponens):
+    def __init__(self, pozicio, latszik, font, szoveg, meret, kozep_origo = False):
+        super().__init__(pozicio, (0,0), latszik)
+    
+        self.szoveg = Eszkozok.bemenetellenor(szoveg, str)
+        self.font = Eszkozok.bemenetellenor(font, str)
+        # Betűtípus mérete relatív a képernyőhöz
+        meret = meret*(1920/_FELBONTAS[0])//(1080/_FELBONTAS[1])
+        self.iro = pg.font.SysFont(self.font, Eszkozok.bemenetellenor(meret, int))
+
+        if type(pozicio)==tuple:
+            if kozep_origo == True:
+                self.pozicio=(
+                    pozicio[0]-(self.iro.size(self.szoveg)[0]//2),
+                    pozicio[1]-(self.iro.size(self.szoveg)[1]//2)
+                )
+            else:
+                self.pozicio = pozicio
+        else:
+            print(&#34;[F] [Ablakvezerlo] Nem adtad meg a pozíciót&#34;)
+            self.pozicio=(0,0)
+        
+    def rajzol(self, pg_felulet):
+        pg_felulet.blit(self.iro.render(f&#34;{self.szoveg}&#34;, True, (0,0,0)), self.pozicio)
+    def frissit(self, szoveg):
+        self.szoveg = szoveg
+
+class SzovegLista(Ablakkomponens):
+    def __init__(self, pozicio, latszik, font, szoveglista, elteres_y):
+        super().__init__(pozicio, (0,0), latszik)
+        self.in_szoveglista = Eszkozok.bemenetellenor(szoveglista, dict)
+        self.font = Eszkozok.bemenetellenor(font, str)
+        self.elteres_y = Eszkozok.bemenetellenor(elteres_y, int)
+        self.szovegek = {}
+
+    def rajzol(self, pg_felulet):
+        for i in self.szovegek.keys():
+            self.szovegek[i][&#34;szoveg&#34;].rajzol(pg_felulet)
+
+    def frissit(self, szoveglista):
+        self.in_szoveglista = Eszkozok.bemenetellenor(szoveglista, dict)
+        for i, j in enumerate(self.in_szoveglista.keys()):
+            self.szovegek.update({j: {
+                &#34;szoveg&#34;: Szoveg((self.pozicio[0]+2, self.pozicio[1]+(self.pozicio[1]*i//2)), True, Eszkozok.bemenetellenor(self.font, str), j, 15),
+                &#34;szin&#34;: self.in_szoveglista[j][&#34;szin&#34;],
+            }})
+
+class Gomb(Ablakkomponens):
+    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag, in_szoveg=&#34;&#34;, font=&#34;Consolas&#34;):
+        super().__init__(pozicio, dimenziok, latszik)
+        # Szín
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.&#34;)
+            self.szin = (0,0,0)
+        # Vastagság
+        if type(vastagsag) == int:
+            self.vastagsag = vastagsag
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.&#34;)
+            self.vastagsag = 1
+        # Szöveg
+        if type(in_szoveg) == str:
+            self.szoveg = Szoveg(
+                (self.pozicio[0]+(self.dimenziok[0]//2), self.pozicio[1]+(self.dimenziok[1]//2)),
+                True,
+                font,
+                in_szoveg,
+                10,
+                True
+            )
+        else:
+            print(&#34;[F] [Ablakvezerlo] A szöveg csak string lehet&#34;)
+
+
+    def rajzol(self, pg_felulet):
+        pg.draw.rect(pg_felulet, self.szin, pg.Rect(self.pozicio[0], self.pozicio[1], 
+        self.dimenziok[0], self.dimenziok[1]), self.vastagsag)
+        self.szoveg.rajzol(pg_felulet)
+        
+    def g_lenyomva(self):
+        &#39;&#39;&#39;
+        Le van-e nyomva a gomb
+        &#39;&#39;&#39;
+        kurzor_poz = pg.mouse.get_pos()
+        if _gomb_lenyomva == True:
+            # ellenőrzés x, y tengelyre
+            if (kurzor_poz[0] &gt; self.pozicio[0] and kurzor_poz[0] &lt; self.pozicio[0]+self.dimenziok[0]) and (kurzor_poz[1] &gt; self.pozicio[1] and kurzor_poz[1] &lt; self.pozicio[1]+self.dimenziok[1]):
+                return True
+            else:
+                return False
+
+class Grid(Ablakkomponens):
+    def __init__(self, pozicio, dimenziok, latszik, feloszt_meret, szin):
+        super().__init__(pozicio, dimenziok, latszik)
+
+        if type(feloszt_meret) == int:
+            self.feloszt_meret = feloszt_meret
+        else:
+            print(&#34;[F] [Ablakvezerlo] A méret egész szám lehet&#34;)
+            self.feloszt_meret = 2
+
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print(&#34;[F] [Ablakvezerlo] A szín tuple RGB lehet&#34;)
+            self.szin = (0,0,0)
+        self.koordinatak = []
+        self.betu = pg.font.SysFont(&#34;Verdana&#34;, 30)
+        self.kijeloles = False # A rács állapota (kijelölés folyik / nem)
+        self.szolista = []
+
+    def rajzol(self, pg_felulet):
+        for i in range(self.feloszt_meret):
+            for j in range(self.feloszt_meret):
+                if (i, j) in self.koordinatak:
+                    szin = (255,0,0)
+                else:
+                    szin = self.szin
+                pg.draw.rect(
+                    pg_felulet,
+                    szin,
+                    pg.Rect(
+                        self.pozicio[0]+i*(self.dimenziok[0]/self.feloszt_meret),
+                        self.pozicio[1]+j*(self.dimenziok[1]/self.feloszt_meret),
+                        self.dimenziok[0]/(self.feloszt_meret),
+                        self.dimenziok[1]/(self.feloszt_meret)
+                    ),
+                    1
+                )
+                
+                pg_felulet.blit(self.betu.render(str(self.szolista[i][j]), True, (0,0,0)), (
+                    self.pozicio[0]+i*(self.dimenziok[0]/self.feloszt_meret),
+                    self.pozicio[1]+j*(self.dimenziok[1]/self.feloszt_meret)
+                ))
+    
+    def g_valasztas(self):
+        koordinatak = (
+            (pg.mouse.get_pos()[0]-self.pozicio[0])//(self.dimenziok[0]/(self.feloszt_meret)), 
+            (pg.mouse.get_pos()[1]-self.pozicio[1])//(self.dimenziok[1]/(self.feloszt_meret))
+        )
+        if _gomb_lenyomva == True:
+            self.kijeloles = True
+            if koordinatak not in self.koordinatak:
+                if (koordinatak[0] &gt;= 0 and koordinatak[0] &lt;= self.feloszt_meret) and (koordinatak[1] &gt;= 0 and koordinatak[1] &lt;= self.feloszt_meret):
+                    self.koordinatak.append(koordinatak)
+            return self.kijeloles
+        elif _gomb_lenyomva == False and self.kijeloles == True:
+            self.kijeloles = False
+            return self.koordinatak
+        elif _gomb_lenyomva == False and self.kijeloles == False:
+            self.koordinatak = []
+            return False
+
+    def s_frissit(self, feloszt_meret):
+        self.feloszt_meret = feloszt_meret
+
+class Negyszog(Ablakkomponens):
+    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag):
+        super().__init__(pozicio, dimenziok, latszik)
+        # Szín
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.&#34;)
+            self.szin = (0,0,0)
+        # Vastagság
+        if type(vastagsag) == int:
+            self.vastagsag = vastagsag
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.&#34;)
+            self.vastagsag = 1
+
+    def rajzol(self, pg_felulet):
+        pg.draw.rect(pg_felulet, self.szin, pg.Rect(self.pozicio[0], self.pozicio[1], self.dimenziok[0], self.dimenziok[1]), self.vastagsag)
+
+# Ablak
+
+class Ablak():
+    def __init__(self, in_elemek, hatterszin):
+        &#39;&#39;&#39;
+        Ablak inicializálása ablakkomponensekkel
+        &#39;&#39;&#39;
+        # Elemek
+        self.ELEMEK = {} # &#34;nev&#34;:Ablakkomponens()
+        if type(in_elemek) == dict:
+            for i in in_elemek.keys():
+                if type(in_elemek[i]).__bases__[0] == Ablakkomponens:
+                    self.ELEMEK.update({i: in_elemek[i]})
+                else:
+                    print(f&#34;[F] [Ablakvezerlo] Nem ablakkomponenst akar felvenni az ablakba ({str(type(in_elemek[i]))})&#34;)
+        # Háttérszín
+        if type(hatterszin) == tuple:
+            if len(hatterszin) == 3:
+                self.hatterszin = hatterszin
+            else:
+                self.hatterszin = (125,0,0)
+                print(&#34;[F] [Ablakvezerlo] A háttérszín csak RGB tuple lehet. Alapértelmezett színre cserélés.&#34;)
+
+# Ablakvezérlő
+
+class Ablakvezerlo():
+    def __init__(self):
+        # PyGame ablakelemek inicializálása
+        global _FELBONTAS
+        _FELBONTAS = (pg.display.Info().current_w, pg.display.Info().current_h)
+        self.TULAJDONSAGOK = {
+            &#34;FELBONTAS&#34;: _FELBONTAS,
+            &#34;ABLAK_MERET&#34;: (pg.display.Info().current_w//1.5, pg.display.Info().current_h//1.5),
+            &#34;CIM&#34;: &#34;Szókereső&#34;
+        }
+        self.FOLYAMAT_ABLAK = pg.display.set_mode(self.TULAJDONSAGOK[&#34;ABLAK_MERET&#34;])
+        pg.display.set_caption(self.TULAJDONSAGOK[&#34;CIM&#34;])
+        self.PG_CLOCK = pg.time.Clock()
+        self.FPS = 60
+        # Ablakok inicializálása
+        self.ABLAKOK = {} # Értéket az init_ablaklista függvény ad majd.
+
+    def init_ablaklista(self, in_ablakok: dict):
+        &#39;&#39;&#39;
+        Ablakok inicializálása. Formátum: &#34;jatekallas&#34;: Ablak()
+        &#39;&#39;&#39;
+        for i in in_ablakok.keys():
+            if type(in_ablakok[i]) == Ablak:
+                if len(in_ablakok[i].ELEMEK) &gt; 0:
+                    self.ABLAKOK.update({i: in_ablakok[i]})
+                else:
+                    print(&#34;[F] [Ablakvezerlo] Egy ablak felvétele nem sikerült, mert egyetlen komponens sem megfelelő benne&#34;)
+
+    def frissit(self, jatekallas):
+        global _gomb_lenyomva
+        # FPS
+        pg.display.set_caption(f&#34;FPS: {self.PG_CLOCK.get_fps()}&#34;)
+        # Események kezelése
+        for i in pg.event.get():
+            if i.type == pg.QUIT:
+                pg.quit()
+                exit()
+            elif i.type == pg.MOUSEBUTTONDOWN:
+                _gomb_lenyomva = True
+            elif i.type == pg.MOUSEBUTTONUP:
+                _gomb_lenyomva = False
+        # Képfrissítés
+        self.PG_CLOCK.tick(self.FPS)
+        pg.display.update()
+        if jatekallas in self.ABLAKOK.keys():
+            self.FOLYAMAT_ABLAK.fill(self.ABLAKOK[jatekallas].hatterszin)
+            for i in self.ABLAKOK[jatekallas].ELEMEK.keys():
+                if self.ABLAKOK[jatekallas].ELEMEK[i].latszik == True:
+                    self.ABLAKOK[jatekallas].ELEMEK[i].rajzol(self.FOLYAMAT_ABLAK)
+        else:
+            self.FOLYAMAT_ABLAK.fill((255,0,0))
+    
+    # getter függvények
+    def g_felbontas(self):
+        return self.TULAJDONSAGOK[&#34;FELBONTAS&#34;]
+    def g_ablakmeret(self):
+        return self.TULAJDONSAGOK[&#34;ABLAK_MERET&#34;]</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="Ablakvezerlo.Ablak"><code class="flex name class">
+<span>class <span class="ident">Ablak</span></span>
+<span>(</span><span>in_elemek, hatterszin)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ablak inicializálása ablakkomponensekkel</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Ablak():
+    def __init__(self, in_elemek, hatterszin):
+        &#39;&#39;&#39;
+        Ablak inicializálása ablakkomponensekkel
+        &#39;&#39;&#39;
+        # Elemek
+        self.ELEMEK = {} # &#34;nev&#34;:Ablakkomponens()
+        if type(in_elemek) == dict:
+            for i in in_elemek.keys():
+                if type(in_elemek[i]).__bases__[0] == Ablakkomponens:
+                    self.ELEMEK.update({i: in_elemek[i]})
+                else:
+                    print(f&#34;[F] [Ablakvezerlo] Nem ablakkomponenst akar felvenni az ablakba ({str(type(in_elemek[i]))})&#34;)
+        # Háttérszín
+        if type(hatterszin) == tuple:
+            if len(hatterszin) == 3:
+                self.hatterszin = hatterszin
+            else:
+                self.hatterszin = (125,0,0)
+                print(&#34;[F] [Ablakvezerlo] A háttérszín csak RGB tuple lehet. Alapértelmezett színre cserélés.&#34;)</code></pre>
+</details>
+</dd>
+<dt id="Ablakvezerlo.Ablakkomponens"><code class="flex name class">
+<span>class <span class="ident">Ablakkomponens</span></span>
+<span>(</span><span>pozicio=(0, 0), dimenziok=(0, 0), latszik=True)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Ablakkomponens():
+    def __init__(self, pozicio = (0,0), dimenziok = (0,0), latszik = True):
+        if (type(pozicio) == tuple and len(pozicio) == 2) and (type(dimenziok) == tuple and len(dimenziok) == 2):
+            self.pozicio = pozicio
+            self.dimenziok = dimenziok
+        else:
+            print(&#34;[F] [Ablakvezerlo] A megadott koordinátaértékekben hibák találhatóak. Helyes szintaxis: tuple (x, y)&#34;)
+        self.latszik = latszik
+
+    def s_latszik(self, ertek):
+        if ertek != self.latszik:
+            self.latszik = ertek
+    
+    def g_latszik(self):
+        return self.latszik
+
+    def rajzol(self, pg_felulet):
+        &#39;&#39;&#39;
+        Alakzat rajzolása
+        &#39;&#39;&#39;
+        pass</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="Ablakvezerlo.Gomb" href="#Ablakvezerlo.Gomb">Gomb</a></li>
+<li><a title="Ablakvezerlo.Grid" href="#Ablakvezerlo.Grid">Grid</a></li>
+<li><a title="Ablakvezerlo.Negyszog" href="#Ablakvezerlo.Negyszog">Negyszog</a></li>
+<li><a title="Ablakvezerlo.Szoveg" href="#Ablakvezerlo.Szoveg">Szoveg</a></li>
+<li><a title="Ablakvezerlo.SzovegLista" href="#Ablakvezerlo.SzovegLista">SzovegLista</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="Ablakvezerlo.Ablakkomponens.g_latszik"><code class="name flex">
+<span>def <span class="ident">g_latszik</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def g_latszik(self):
+    return self.latszik</code></pre>
+</details>
+</dd>
+<dt id="Ablakvezerlo.Ablakkomponens.rajzol"><code class="name flex">
+<span>def <span class="ident">rajzol</span></span>(<span>self, pg_felulet)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Alakzat rajzolása</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rajzol(self, pg_felulet):
+    &#39;&#39;&#39;
+    Alakzat rajzolása
+    &#39;&#39;&#39;
+    pass</code></pre>
+</details>
+</dd>
+<dt id="Ablakvezerlo.Ablakkomponens.s_latszik"><code class="name flex">
+<span>def <span class="ident">s_latszik</span></span>(<span>self, ertek)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def s_latszik(self, ertek):
+    if ertek != self.latszik:
+        self.latszik = ertek</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="Ablakvezerlo.Ablakvezerlo"><code class="flex name class">
+<span>class <span class="ident">Ablakvezerlo</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Ablakvezerlo():
+    def __init__(self):
+        # PyGame ablakelemek inicializálása
+        global _FELBONTAS
+        _FELBONTAS = (pg.display.Info().current_w, pg.display.Info().current_h)
+        self.TULAJDONSAGOK = {
+            &#34;FELBONTAS&#34;: _FELBONTAS,
+            &#34;ABLAK_MERET&#34;: (pg.display.Info().current_w//1.5, pg.display.Info().current_h//1.5),
+            &#34;CIM&#34;: &#34;Szókereső&#34;
+        }
+        self.FOLYAMAT_ABLAK = pg.display.set_mode(self.TULAJDONSAGOK[&#34;ABLAK_MERET&#34;])
+        pg.display.set_caption(self.TULAJDONSAGOK[&#34;CIM&#34;])
+        self.PG_CLOCK = pg.time.Clock()
+        self.FPS = 60
+        # Ablakok inicializálása
+        self.ABLAKOK = {} # Értéket az init_ablaklista függvény ad majd.
+
+    def init_ablaklista(self, in_ablakok: dict):
+        &#39;&#39;&#39;
+        Ablakok inicializálása. Formátum: &#34;jatekallas&#34;: Ablak()
+        &#39;&#39;&#39;
+        for i in in_ablakok.keys():
+            if type(in_ablakok[i]) == Ablak:
+                if len(in_ablakok[i].ELEMEK) &gt; 0:
+                    self.ABLAKOK.update({i: in_ablakok[i]})
+                else:
+                    print(&#34;[F] [Ablakvezerlo] Egy ablak felvétele nem sikerült, mert egyetlen komponens sem megfelelő benne&#34;)
+
+    def frissit(self, jatekallas):
+        global _gomb_lenyomva
+        # FPS
+        pg.display.set_caption(f&#34;FPS: {self.PG_CLOCK.get_fps()}&#34;)
+        # Események kezelése
+        for i in pg.event.get():
+            if i.type == pg.QUIT:
+                pg.quit()
+                exit()
+            elif i.type == pg.MOUSEBUTTONDOWN:
+                _gomb_lenyomva = True
+            elif i.type == pg.MOUSEBUTTONUP:
+                _gomb_lenyomva = False
+        # Képfrissítés
+        self.PG_CLOCK.tick(self.FPS)
+        pg.display.update()
+        if jatekallas in self.ABLAKOK.keys():
+            self.FOLYAMAT_ABLAK.fill(self.ABLAKOK[jatekallas].hatterszin)
+            for i in self.ABLAKOK[jatekallas].ELEMEK.keys():
+                if self.ABLAKOK[jatekallas].ELEMEK[i].latszik == True:
+                    self.ABLAKOK[jatekallas].ELEMEK[i].rajzol(self.FOLYAMAT_ABLAK)
+        else:
+            self.FOLYAMAT_ABLAK.fill((255,0,0))
+    
+    # getter függvények
+    def g_felbontas(self):
+        return self.TULAJDONSAGOK[&#34;FELBONTAS&#34;]
+    def g_ablakmeret(self):
+        return self.TULAJDONSAGOK[&#34;ABLAK_MERET&#34;]</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="Ablakvezerlo.Ablakvezerlo.frissit"><code class="name flex">
+<span>def <span class="ident">frissit</span></span>(<span>self, jatekallas)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def frissit(self, jatekallas):
+    global _gomb_lenyomva
+    # FPS
+    pg.display.set_caption(f&#34;FPS: {self.PG_CLOCK.get_fps()}&#34;)
+    # Események kezelése
+    for i in pg.event.get():
+        if i.type == pg.QUIT:
+            pg.quit()
+            exit()
+        elif i.type == pg.MOUSEBUTTONDOWN:
+            _gomb_lenyomva = True
+        elif i.type == pg.MOUSEBUTTONUP:
+            _gomb_lenyomva = False
+    # Képfrissítés
+    self.PG_CLOCK.tick(self.FPS)
+    pg.display.update()
+    if jatekallas in self.ABLAKOK.keys():
+        self.FOLYAMAT_ABLAK.fill(self.ABLAKOK[jatekallas].hatterszin)
+        for i in self.ABLAKOK[jatekallas].ELEMEK.keys():
+            if self.ABLAKOK[jatekallas].ELEMEK[i].latszik == True:
+                self.ABLAKOK[jatekallas].ELEMEK[i].rajzol(self.FOLYAMAT_ABLAK)
+    else:
+        self.FOLYAMAT_ABLAK.fill((255,0,0))</code></pre>
+</details>
+</dd>
+<dt id="Ablakvezerlo.Ablakvezerlo.g_ablakmeret"><code class="name flex">
+<span>def <span class="ident">g_ablakmeret</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def g_ablakmeret(self):
+    return self.TULAJDONSAGOK[&#34;ABLAK_MERET&#34;]</code></pre>
+</details>
+</dd>
+<dt id="Ablakvezerlo.Ablakvezerlo.g_felbontas"><code class="name flex">
+<span>def <span class="ident">g_felbontas</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def g_felbontas(self):
+    return self.TULAJDONSAGOK[&#34;FELBONTAS&#34;]</code></pre>
+</details>
+</dd>
+<dt id="Ablakvezerlo.Ablakvezerlo.init_ablaklista"><code class="name flex">
+<span>def <span class="ident">init_ablaklista</span></span>(<span>self, in_ablakok: dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ablakok inicializálása. Formátum: "jatekallas": Ablak()</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init_ablaklista(self, in_ablakok: dict):
+    &#39;&#39;&#39;
+    Ablakok inicializálása. Formátum: &#34;jatekallas&#34;: Ablak()
+    &#39;&#39;&#39;
+    for i in in_ablakok.keys():
+        if type(in_ablakok[i]) == Ablak:
+            if len(in_ablakok[i].ELEMEK) &gt; 0:
+                self.ABLAKOK.update({i: in_ablakok[i]})
+            else:
+                print(&#34;[F] [Ablakvezerlo] Egy ablak felvétele nem sikerült, mert egyetlen komponens sem megfelelő benne&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="Ablakvezerlo.Gomb"><code class="flex name class">
+<span>class <span class="ident">Gomb</span></span>
+<span>(</span><span>pozicio, dimenziok, latszik, szin, vastagsag, in_szoveg='', font='Consolas')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Gomb(Ablakkomponens):
+    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag, in_szoveg=&#34;&#34;, font=&#34;Consolas&#34;):
+        super().__init__(pozicio, dimenziok, latszik)
+        # Szín
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.&#34;)
+            self.szin = (0,0,0)
+        # Vastagság
+        if type(vastagsag) == int:
+            self.vastagsag = vastagsag
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.&#34;)
+            self.vastagsag = 1
+        # Szöveg
+        if type(in_szoveg) == str:
+            self.szoveg = Szoveg(
+                (self.pozicio[0]+(self.dimenziok[0]//2), self.pozicio[1]+(self.dimenziok[1]//2)),
+                True,
+                font,
+                in_szoveg,
+                10,
+                True
+            )
+        else:
+            print(&#34;[F] [Ablakvezerlo] A szöveg csak string lehet&#34;)
+
+
+    def rajzol(self, pg_felulet):
+        pg.draw.rect(pg_felulet, self.szin, pg.Rect(self.pozicio[0], self.pozicio[1], 
+        self.dimenziok[0], self.dimenziok[1]), self.vastagsag)
+        self.szoveg.rajzol(pg_felulet)
+        
+    def g_lenyomva(self):
+        &#39;&#39;&#39;
+        Le van-e nyomva a gomb
+        &#39;&#39;&#39;
+        kurzor_poz = pg.mouse.get_pos()
+        if _gomb_lenyomva == True:
+            # ellenőrzés x, y tengelyre
+            if (kurzor_poz[0] &gt; self.pozicio[0] and kurzor_poz[0] &lt; self.pozicio[0]+self.dimenziok[0]) and (kurzor_poz[1] &gt; self.pozicio[1] and kurzor_poz[1] &lt; self.pozicio[1]+self.dimenziok[1]):
+                return True
+            else:
+                return False</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="Ablakvezerlo.Gomb.g_lenyomva"><code class="name flex">
+<span>def <span class="ident">g_lenyomva</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Le van-e nyomva a gomb</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def g_lenyomva(self):
+    &#39;&#39;&#39;
+    Le van-e nyomva a gomb
+    &#39;&#39;&#39;
+    kurzor_poz = pg.mouse.get_pos()
+    if _gomb_lenyomva == True:
+        # ellenőrzés x, y tengelyre
+        if (kurzor_poz[0] &gt; self.pozicio[0] and kurzor_poz[0] &lt; self.pozicio[0]+self.dimenziok[0]) and (kurzor_poz[1] &gt; self.pozicio[1] and kurzor_poz[1] &lt; self.pozicio[1]+self.dimenziok[1]):
+            return True
+        else:
+            return False</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></b></code>:
+<ul class="hlist">
+<li><code><a title="Ablakvezerlo.Ablakkomponens.rajzol" href="#Ablakvezerlo.Ablakkomponens.rajzol">rajzol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="Ablakvezerlo.Grid"><code class="flex name class">
+<span>class <span class="ident">Grid</span></span>
+<span>(</span><span>pozicio, dimenziok, latszik, feloszt_meret, szin)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Grid(Ablakkomponens):
+    def __init__(self, pozicio, dimenziok, latszik, feloszt_meret, szin):
+        super().__init__(pozicio, dimenziok, latszik)
+
+        if type(feloszt_meret) == int:
+            self.feloszt_meret = feloszt_meret
+        else:
+            print(&#34;[F] [Ablakvezerlo] A méret egész szám lehet&#34;)
+            self.feloszt_meret = 2
+
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print(&#34;[F] [Ablakvezerlo] A szín tuple RGB lehet&#34;)
+            self.szin = (0,0,0)
+        self.koordinatak = []
+        self.betu = pg.font.SysFont(&#34;Verdana&#34;, 30)
+        self.kijeloles = False # A rács állapota (kijelölés folyik / nem)
+        self.szolista = []
+
+    def rajzol(self, pg_felulet):
+        for i in range(self.feloszt_meret):
+            for j in range(self.feloszt_meret):
+                if (i, j) in self.koordinatak:
+                    szin = (255,0,0)
+                else:
+                    szin = self.szin
+                pg.draw.rect(
+                    pg_felulet,
+                    szin,
+                    pg.Rect(
+                        self.pozicio[0]+i*(self.dimenziok[0]/self.feloszt_meret),
+                        self.pozicio[1]+j*(self.dimenziok[1]/self.feloszt_meret),
+                        self.dimenziok[0]/(self.feloszt_meret),
+                        self.dimenziok[1]/(self.feloszt_meret)
+                    ),
+                    1
+                )
+                
+                pg_felulet.blit(self.betu.render(str(self.szolista[i][j]), True, (0,0,0)), (
+                    self.pozicio[0]+i*(self.dimenziok[0]/self.feloszt_meret),
+                    self.pozicio[1]+j*(self.dimenziok[1]/self.feloszt_meret)
+                ))
+    
+    def g_valasztas(self):
+        koordinatak = (
+            (pg.mouse.get_pos()[0]-self.pozicio[0])//(self.dimenziok[0]/(self.feloszt_meret)), 
+            (pg.mouse.get_pos()[1]-self.pozicio[1])//(self.dimenziok[1]/(self.feloszt_meret))
+        )
+        if _gomb_lenyomva == True:
+            self.kijeloles = True
+            if koordinatak not in self.koordinatak:
+                if (koordinatak[0] &gt;= 0 and koordinatak[0] &lt;= self.feloszt_meret) and (koordinatak[1] &gt;= 0 and koordinatak[1] &lt;= self.feloszt_meret):
+                    self.koordinatak.append(koordinatak)
+            return self.kijeloles
+        elif _gomb_lenyomva == False and self.kijeloles == True:
+            self.kijeloles = False
+            return self.koordinatak
+        elif _gomb_lenyomva == False and self.kijeloles == False:
+            self.koordinatak = []
+            return False
+
+    def s_frissit(self, feloszt_meret):
+        self.feloszt_meret = feloszt_meret</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="Ablakvezerlo.Grid.g_valasztas"><code class="name flex">
+<span>def <span class="ident">g_valasztas</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def g_valasztas(self):
+    koordinatak = (
+        (pg.mouse.get_pos()[0]-self.pozicio[0])//(self.dimenziok[0]/(self.feloszt_meret)), 
+        (pg.mouse.get_pos()[1]-self.pozicio[1])//(self.dimenziok[1]/(self.feloszt_meret))
+    )
+    if _gomb_lenyomva == True:
+        self.kijeloles = True
+        if koordinatak not in self.koordinatak:
+            if (koordinatak[0] &gt;= 0 and koordinatak[0] &lt;= self.feloszt_meret) and (koordinatak[1] &gt;= 0 and koordinatak[1] &lt;= self.feloszt_meret):
+                self.koordinatak.append(koordinatak)
+        return self.kijeloles
+    elif _gomb_lenyomva == False and self.kijeloles == True:
+        self.kijeloles = False
+        return self.koordinatak
+    elif _gomb_lenyomva == False and self.kijeloles == False:
+        self.koordinatak = []
+        return False</code></pre>
+</details>
+</dd>
+<dt id="Ablakvezerlo.Grid.s_frissit"><code class="name flex">
+<span>def <span class="ident">s_frissit</span></span>(<span>self, feloszt_meret)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def s_frissit(self, feloszt_meret):
+    self.feloszt_meret = feloszt_meret</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></b></code>:
+<ul class="hlist">
+<li><code><a title="Ablakvezerlo.Ablakkomponens.rajzol" href="#Ablakvezerlo.Ablakkomponens.rajzol">rajzol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="Ablakvezerlo.Negyszog"><code class="flex name class">
+<span>class <span class="ident">Negyszog</span></span>
+<span>(</span><span>pozicio, dimenziok, latszik, szin, vastagsag)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Negyszog(Ablakkomponens):
+    def __init__(self, pozicio, dimenziok, latszik, szin, vastagsag):
+        super().__init__(pozicio, dimenziok, latszik)
+        # Szín
+        if type(szin) == tuple and len(szin) == 3:
+            self.szin = szin
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens színe csak RGB tuple lehet. Alapértelmezett színre cserélés.&#34;)
+            self.szin = (0,0,0)
+        # Vastagság
+        if type(vastagsag) == int:
+            self.vastagsag = vastagsag
+        else:
+            print(&#34;[F] [Ablakvezerlo] Az ablakkomponens vastagsága csak egész szám lehet. Alapértelmezett értékre cserélés.&#34;)
+            self.vastagsag = 1
+
+    def rajzol(self, pg_felulet):
+        pg.draw.rect(pg_felulet, self.szin, pg.Rect(self.pozicio[0], self.pozicio[1], self.dimenziok[0], self.dimenziok[1]), self.vastagsag)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></b></code>:
+<ul class="hlist">
+<li><code><a title="Ablakvezerlo.Ablakkomponens.rajzol" href="#Ablakvezerlo.Ablakkomponens.rajzol">rajzol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="Ablakvezerlo.Szoveg"><code class="flex name class">
+<span>class <span class="ident">Szoveg</span></span>
+<span>(</span><span>pozicio, latszik, font, szoveg, meret, kozep_origo=False)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Szoveg(Ablakkomponens):
+    def __init__(self, pozicio, latszik, font, szoveg, meret, kozep_origo = False):
+        super().__init__(pozicio, (0,0), latszik)
+    
+        self.szoveg = Eszkozok.bemenetellenor(szoveg, str)
+        self.font = Eszkozok.bemenetellenor(font, str)
+        # Betűtípus mérete relatív a képernyőhöz
+        meret = meret*(1920/_FELBONTAS[0])//(1080/_FELBONTAS[1])
+        self.iro = pg.font.SysFont(self.font, Eszkozok.bemenetellenor(meret, int))
+
+        if type(pozicio)==tuple:
+            if kozep_origo == True:
+                self.pozicio=(
+                    pozicio[0]-(self.iro.size(self.szoveg)[0]//2),
+                    pozicio[1]-(self.iro.size(self.szoveg)[1]//2)
+                )
+            else:
+                self.pozicio = pozicio
+        else:
+            print(&#34;[F] [Ablakvezerlo] Nem adtad meg a pozíciót&#34;)
+            self.pozicio=(0,0)
+        
+    def rajzol(self, pg_felulet):
+        pg_felulet.blit(self.iro.render(f&#34;{self.szoveg}&#34;, True, (0,0,0)), self.pozicio)
+    def frissit(self, szoveg):
+        self.szoveg = szoveg</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="Ablakvezerlo.Szoveg.frissit"><code class="name flex">
+<span>def <span class="ident">frissit</span></span>(<span>self, szoveg)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def frissit(self, szoveg):
+    self.szoveg = szoveg</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></b></code>:
+<ul class="hlist">
+<li><code><a title="Ablakvezerlo.Ablakkomponens.rajzol" href="#Ablakvezerlo.Ablakkomponens.rajzol">rajzol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="Ablakvezerlo.SzovegLista"><code class="flex name class">
+<span>class <span class="ident">SzovegLista</span></span>
+<span>(</span><span>pozicio, latszik, font, szoveglista, elteres_y)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SzovegLista(Ablakkomponens):
+    def __init__(self, pozicio, latszik, font, szoveglista, elteres_y):
+        super().__init__(pozicio, (0,0), latszik)
+        self.in_szoveglista = Eszkozok.bemenetellenor(szoveglista, dict)
+        self.font = Eszkozok.bemenetellenor(font, str)
+        self.elteres_y = Eszkozok.bemenetellenor(elteres_y, int)
+        self.szovegek = {}
+
+    def rajzol(self, pg_felulet):
+        for i in self.szovegek.keys():
+            self.szovegek[i][&#34;szoveg&#34;].rajzol(pg_felulet)
+
+    def frissit(self, szoveglista):
+        self.in_szoveglista = Eszkozok.bemenetellenor(szoveglista, dict)
+        for i, j in enumerate(self.in_szoveglista.keys()):
+            self.szovegek.update({j: {
+                &#34;szoveg&#34;: Szoveg((self.pozicio[0]+2, self.pozicio[1]+(self.pozicio[1]*i//2)), True, Eszkozok.bemenetellenor(self.font, str), j, 15),
+                &#34;szin&#34;: self.in_szoveglista[j][&#34;szin&#34;],
+            }})</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="Ablakvezerlo.SzovegLista.frissit"><code class="name flex">
+<span>def <span class="ident">frissit</span></span>(<span>self, szoveglista)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def frissit(self, szoveglista):
+    self.in_szoveglista = Eszkozok.bemenetellenor(szoveglista, dict)
+    for i, j in enumerate(self.in_szoveglista.keys()):
+        self.szovegek.update({j: {
+            &#34;szoveg&#34;: Szoveg((self.pozicio[0]+2, self.pozicio[1]+(self.pozicio[1]*i//2)), True, Eszkozok.bemenetellenor(self.font, str), j, 15),
+            &#34;szin&#34;: self.in_szoveglista[j][&#34;szin&#34;],
+        }})</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></b></code>:
+<ul class="hlist">
+<li><code><a title="Ablakvezerlo.Ablakkomponens.rajzol" href="#Ablakvezerlo.Ablakkomponens.rajzol">rajzol</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="Ablakvezerlo.Ablak" href="#Ablakvezerlo.Ablak">Ablak</a></code></h4>
+</li>
+<li>
+<h4><code><a title="Ablakvezerlo.Ablakkomponens" href="#Ablakvezerlo.Ablakkomponens">Ablakkomponens</a></code></h4>
+<ul class="">
+<li><code><a title="Ablakvezerlo.Ablakkomponens.g_latszik" href="#Ablakvezerlo.Ablakkomponens.g_latszik">g_latszik</a></code></li>
+<li><code><a title="Ablakvezerlo.Ablakkomponens.rajzol" href="#Ablakvezerlo.Ablakkomponens.rajzol">rajzol</a></code></li>
+<li><code><a title="Ablakvezerlo.Ablakkomponens.s_latszik" href="#Ablakvezerlo.Ablakkomponens.s_latszik">s_latszik</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="Ablakvezerlo.Ablakvezerlo" href="#Ablakvezerlo.Ablakvezerlo">Ablakvezerlo</a></code></h4>
+<ul class="">
+<li><code><a title="Ablakvezerlo.Ablakvezerlo.frissit" href="#Ablakvezerlo.Ablakvezerlo.frissit">frissit</a></code></li>
+<li><code><a title="Ablakvezerlo.Ablakvezerlo.g_ablakmeret" href="#Ablakvezerlo.Ablakvezerlo.g_ablakmeret">g_ablakmeret</a></code></li>
+<li><code><a title="Ablakvezerlo.Ablakvezerlo.g_felbontas" href="#Ablakvezerlo.Ablakvezerlo.g_felbontas">g_felbontas</a></code></li>
+<li><code><a title="Ablakvezerlo.Ablakvezerlo.init_ablaklista" href="#Ablakvezerlo.Ablakvezerlo.init_ablaklista">init_ablaklista</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="Ablakvezerlo.Gomb" href="#Ablakvezerlo.Gomb">Gomb</a></code></h4>
+<ul class="">
+<li><code><a title="Ablakvezerlo.Gomb.g_lenyomva" href="#Ablakvezerlo.Gomb.g_lenyomva">g_lenyomva</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="Ablakvezerlo.Grid" href="#Ablakvezerlo.Grid">Grid</a></code></h4>
+<ul class="">
+<li><code><a title="Ablakvezerlo.Grid.g_valasztas" href="#Ablakvezerlo.Grid.g_valasztas">g_valasztas</a></code></li>
+<li><code><a title="Ablakvezerlo.Grid.s_frissit" href="#Ablakvezerlo.Grid.s_frissit">s_frissit</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="Ablakvezerlo.Negyszog" href="#Ablakvezerlo.Negyszog">Negyszog</a></code></h4>
+</li>
+<li>
+<h4><code><a title="Ablakvezerlo.Szoveg" href="#Ablakvezerlo.Szoveg">Szoveg</a></code></h4>
+<ul class="">
+<li><code><a title="Ablakvezerlo.Szoveg.frissit" href="#Ablakvezerlo.Szoveg.frissit">frissit</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="Ablakvezerlo.SzovegLista" href="#Ablakvezerlo.SzovegLista">SzovegLista</a></code></h4>
+<ul class="">
+<li><code><a title="Ablakvezerlo.SzovegLista.frissit" href="#Ablakvezerlo.SzovegLista.frissit">frissit</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
