@@ -1,6 +1,9 @@
 import pygame as pg
 import Ablakvezerlo
 import random
+# Fájlkezeléshez
+import sys
+import os
 
 class Jatekvezerlo():
     def __init__(self): 
@@ -22,8 +25,15 @@ class Jatekvezerlo():
         self.av_szolista = Ablakvezerlo.SzovegLista # Grafikus szöveglista
         # Szavak listája
         self.szavak_adatbazis = []
+        # Fájl elérési útja
         try:
-            with open(r"M:\[ISKOLA]\2022-projekt\szokereso\assets\szavak.txt", encoding="utf-8-sig") as SZAVAK_FAJL:
+            if sys.argv[1:3][0] == "-fajl" and os.path.isfile(sys.argv[1:3][1]):
+                FAJL_UTVONAL = sys.argv[1:3][1]
+        except:
+            FAJL_UTVONAL = os.path.dirname(os.path.abspath(__file__)) + "\szavak.txt"
+
+        try:
+            with open(FAJL_UTVONAL, encoding="utf-8-sig") as SZAVAK_FAJL:
                 for i in SZAVAK_FAJL.readlines():
                     try:
                         for j in i.split(';'):
