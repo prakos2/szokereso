@@ -9,7 +9,7 @@ def bemenetellenor(elem, tipus):
         #print(f"[F] [Eszkozok] Megadott elem típusa nem megfelelő. ({str(type(elem))}) ({str(tipus)})")
         try:
             uj_elem = tipus(elem) # Megpróbálkozás típuskényszerítéssel
-            print(f"[I] [Eszkozok] Típuskényszerítés ({str(type(elem))}) => ({str(tipus)})")
+            #print(f"[I] [Eszkozok] Típuskényszerítés ({str(type(elem))}) => ({str(tipus)})")
         except:
             uj_elem = str(elem)     # Ha sikertelen, egy üres típus visszaadása
         return uj_elem

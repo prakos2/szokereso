@@ -3,8 +3,8 @@ import Eszkozok
 
 # Globális változók
 _gomb_lenyomva = False # Bármely egérgomb lenyomva
-_FELBONTAS = () # A teljes képernyő felbontása, inicializáláskor kap értéket
-_FHD_ARANY = () # A képernyő aránya a full hd felbontáshoz képest
+FELBONTAS = () # A teljes képernyő felbontása, inicializáláskor kap értéket
+FHD_ARANY = () # A képernyő aránya a full hd felbontáshoz képest
 
 # Ablakkomponensek
 
@@ -35,11 +35,10 @@ class Szoveg(Ablakkomponens):
         super().__init__(pozicio, (0,0), latszik)
     
         self.szoveg = Eszkozok.bemenetellenor(szoveg, str)
-        print(self.szoveg)
         self.font = Eszkozok.bemenetellenor(font, str)
         self.szin = Eszkozok.bemenetellenor(szin, tuple)
         # Betűtípus mérete relatív a képernyőhöz
-        meret = meret*_FHD_ARANY
+        meret = meret
         self.iro = pg.font.SysFont(self.font, Eszkozok.bemenetellenor(meret, int))
 
         if type(pozicio)==tuple:
@@ -143,7 +142,7 @@ class Grid(Ablakkomponens):
             print("[F] [Ablakvezerlo] A szín tuple RGB lehet")
             self.szin = (0,0,0)
         self.koordinatak = []
-        self.betu = pg.font.SysFont("Verdana", 20*int(_FELBONTAS[1]//1080))
+        self.betu = pg.font.SysFont("Verdana", 20)
         self.kijeloles = False # A rács állapota (kijelölés folyik / nem)
         self.szolista = []
 
@@ -179,7 +178,7 @@ class Grid(Ablakkomponens):
         if _gomb_lenyomva == True:
             self.kijeloles = True
             if koordinatak not in self.koordinatak:
-                if (koordinatak[0] >= 0 and koordinatak[0] <= self.feloszt_meret) and (koordinatak[1] >= 0 and koordinatak[1] <= self.feloszt_meret):
+                if (koordinatak[0] >= 0 and koordinatak[0] <= (self.feloszt_meret-1)) and (koordinatak[1] >= 0 and koordinatak[1] <= (self.feloszt_meret-1)):
                     self.koordinatak.append(koordinatak)
             return self.kijeloles
         elif _gomb_lenyomva == False and self.kijeloles == True:
@@ -239,12 +238,11 @@ class Ablak():
 class Ablakvezerlo():
     def __init__(self):
         # PyGame ablakelemek inicializálása
-        global _FELBONTAS, _FHD_ARANY
-        _FELBONTAS = (pg.display.Info().current_w, pg.display.Info().current_h)
-        _FHD_ARANY = (1920/_FELBONTAS[0])/(1080/_FELBONTAS[1])
-
+        global FELBONTAS, FHD_ARANY
+        FELBONTAS = (pg.display.Info().current_w, pg.display.Info().current_h)
+        FHD_ARANY = self.FHD_ARANY = (FELBONTAS[0]/FELBONTAS[1])//(1920/1080)
         self.TULAJDONSAGOK = {
-            "FELBONTAS": _FELBONTAS,
+            "FELBONTAS": FELBONTAS,
             "ABLAK_MERET": (pg.display.Info().current_w//1.5, pg.display.Info().current_h//1.5),
             "CIM": "Szókereső"
         }
@@ -291,7 +289,7 @@ class Ablakvezerlo():
             self.FOLYAMAT_ABLAK.fill((255,0,0))
     
     # getter függvények
-    def g_felbontas(self):
+    def gFELBONTAS(self):
         return self.TULAJDONSAGOK["FELBONTAS"]
     def g_ablakmeret(self):
         return self.TULAJDONSAGOK["ABLAK_MERET"]

@@ -1,5 +1,4 @@
 import pygame as pg
-import sys
 from Jatekvezerlo import Jatekvezerlo
 import Ablakvezerlo as AV
 import Eszkozok
@@ -28,12 +27,12 @@ class Szokereso():
                 ),
                 "start": AV.Gomb(
                     (
-                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//5)//2,
-                        self.ABLAKVEZERLO.g_ablakmeret()[1]//2
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(200)//2,
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//2+30
                     ),
                     (
-                        self.ABLAKVEZERLO.g_ablakmeret()[0]//5, 
-                        self.ABLAKVEZERLO.g_ablakmeret()[1]//15
+                        200, 
+                        40
                     ),
                     True,
                     (255,255,255),
@@ -42,12 +41,12 @@ class Szokereso():
                 ),
                 "kilepes": AV.Gomb(
                     (
-                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(self.ABLAKVEZERLO.g_ablakmeret()[0]//5)//2, 
-                        self.ABLAKVEZERLO.g_ablakmeret()[1]//1.5-(self.ABLAKVEZERLO.g_ablakmeret()[1]//15)//2
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(200)//2,
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//2+80
                     ),
                     (
-                        self.ABLAKVEZERLO.g_ablakmeret()[0]//5,
-                        self.ABLAKVEZERLO.g_ablakmeret()[1]//15
+                        200,
+                        40
                     ),
                     True,
                     (255,255,255),

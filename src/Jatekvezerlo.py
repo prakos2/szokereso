@@ -74,7 +74,7 @@ class Jatekvezerlo():
             # Lehet, hogy a játék sincs még elkezdve. Ilyenkor nem lehet szintet lépni.
             print(f"[H] Hiba történt az új szintre lépés közben: {str(kivetel)}")
 
-    def s_uj_jatek(self, jatekablak: Ablakvezerlo.Ablak, grid_n=16, t=180):
+    def s_uj_jatek(self, jatekablak: Ablakvezerlo.Ablak, grid_n=6, t=180):
         if type(t) != int:
             t = 180
             print(f"[F] [Jatekvezerlo] Az idő csak egész szám lehet")
@@ -105,5 +105,11 @@ class Jatekvezerlo():
         for i in self.jatek_szavak.keys():
             if self.szavak_adatbazis[i] == szo:
                 self.av_szolista.szovegek[szo].szin = (255,0,0)
-                self.jatek_szavak[i][1] == True
+                self.jatek_szavak[i][1] = True
                 self.jatek_adatok["pont"] += 1
+        megtalalt_szavak = [self.jatek_szavak[x][1] for x in self.jatek_szavak.keys() if self.jatek_szavak[x][0] != False]
+        print(megtalalt_szavak)
+        if not False in megtalalt_szavak:
+            print("Minden szó megtalálva")
+            self.jatek_adatok["szint"] += 1
+            self.s_uj_szint(self.av_grid.feloszt_meret+1)
