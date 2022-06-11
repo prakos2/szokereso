@@ -21,7 +21,7 @@ class Szokereso():
                     True,
                     "Consolas",
                     "Szókereső",
-                    25,
+                    35,
                     (0,0,0),
                     True
                 ),
@@ -56,7 +56,7 @@ class Szokereso():
             }, (233,179,94)),
             "jatek": AV.Ablak({
                 "time": AV.Szoveg(
-                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2.5+10+self.ABLAKVEZERLO.g_ablakmeret()[0]//4, 10),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2.5+10+self.ABLAKVEZERLO.g_ablakmeret()[0]//4, 0),
                     True,
                     "Arial",
                     "0",
@@ -79,7 +79,7 @@ class Szokereso():
                         self.ABLAKVEZERLO.g_ablakmeret()[0]//2.5+10+self.ABLAKVEZERLO.g_ablakmeret()[0]//4,
                         self.ABLAKVEZERLO.g_ablakmeret()[1]//2-self.ABLAKVEZERLO.g_ablakmeret()[0]//4
                     ),
-                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//4-15,self.ABLAKVEZERLO.g_ablakmeret()[0]//2),
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//4-10,self.ABLAKVEZERLO.g_ablakmeret()[0]//2),
                     True,
                     (0,0,0),
                     1
@@ -97,9 +97,9 @@ class Szokereso():
                 )
             }, (233,179,94)),
             "vegeredmeny": AV.Ablak({
-                "vege": AV.Szoveg((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 20), True, "Verdana", "A játék véget ért", 25, (0,0,0), True),
-                "pontszam": AV.Szoveg((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 20*3), True, "Verdana", f"Elért pontszám: {self.JATEKVEZERLO.jatek_adatok['pont']}", 25, (0,0,0), True),
-                "ujra": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 0), (50,50), True, (0,0,0), 1, "Újra")
+                "vege": AV.Szoveg((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 20), True, "Verdana", "A játék véget ért!", 25, (0,0,0), True),
+                "pontszam": AV.Szoveg((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 100), True, "Verdana", f"Elért pontszám: {self.JATEKVEZERLO.jatek_adatok['pont']}", 25, (0,0,0), True),
+                "ujra": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2.2, 150), (100,50), True, (0,0,0), 1, "Újra")
             }, (233,179,94))
         })
     
