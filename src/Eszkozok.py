@@ -6,12 +6,10 @@ def bemenetellenor(elem, tipus):
     if type(elem) == tipus:
         return elem
     else:
-        #print(f"[F] [Eszkozok] Megadott elem típusa nem megfelelő. ({str(type(elem))}) ({str(tipus)})")
         try:
             uj_elem = tipus(elem) # Megpróbálkozás típuskényszerítéssel
-            #print(f"[I] [Eszkozok] Típuskényszerítés ({str(type(elem))}) => ({str(tipus)})")
         except:
-            uj_elem = str(elem)     # Ha sikertelen, egy üres típus visszaadása
+            uj_elem = str(elem)     # Ha sikertelen, egy str típus visszaadása
         return uj_elem
 
 def idoformat(t):

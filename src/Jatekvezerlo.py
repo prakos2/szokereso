@@ -1,6 +1,5 @@
 import pygame as pg
 import Ablakvezerlo
-import Eszkozok
 import random
 
 class Jatekvezerlo():
@@ -8,7 +7,7 @@ class Jatekvezerlo():
         # Játékállás
         self.JATEKALLASOK = ("menu", "jatek", "vegeredmeny") # Sorrendben lévő játékállások
         self.jatekallas = self.JATEKALLASOK[0]               # Első lehetséges játékállás megadása
-        self.MAX_SZINT = 5                                   # A játékon belül elérhető maximális szintek
+        self.MAX_SZINT = 12                                  # A játékon belül elérhető maximális szintek
         # A játék adatai
         self.jatek_adatok={
             "szint": 0,              # jelenlegi szint
@@ -24,7 +23,7 @@ class Jatekvezerlo():
         # Szavak listája
         self.szavak_adatbazis = []
         try:
-            with open(r".\assets\szavak.txt", encoding="utf-8-sig") as SZAVAK_FAJL:
+            with open(r"M:\[ISKOLA]\2022-projekt\szokereso\assets\szavak.txt", encoding="utf-8-sig") as SZAVAK_FAJL:
                 for i in SZAVAK_FAJL.readlines():
                     try:
                         for j in i.split(';'):
@@ -38,6 +37,9 @@ class Jatekvezerlo():
 
     # Rács generálás
     def uj_racs(self, n):
+        '''
+        Új rács generálása, megváltoztatja a grafikus elemeket is
+        '''
         # Rács hosszának beállítása, ha kisebb mint a legrövidebb szó hossza, módosítás.
         legrovidebb_szo = min([len(x) for x in self.szavak_adatbazis if len(x) != 0])
         if n < legrovidebb_szo:
@@ -67,6 +69,9 @@ class Jatekvezerlo():
 
     # setter függvények
     def s_uj_szint(self, leptek):
+        '''
+        Új szintre lépés megadott rácsnövekedéssel
+        '''
         try:
             # Új szólista generáció
             self.grid_list = self.uj_racs(leptek)
@@ -74,7 +79,10 @@ class Jatekvezerlo():
             # Lehet, hogy a játék sincs még elkezdve. Ilyenkor nem lehet szintet lépni.
             print(f"[H] Hiba történt az új szintre lépés közben: {str(kivetel)}")
 
-    def s_uj_jatek(self, jatekablak: Ablakvezerlo.Ablak, grid_n=6, t=180):
+    def s_uj_jatek(self, jatekablak: Ablakvezerlo.Ablak, grid_n=3, t=180):
+        '''
+        Új játék indítása, minden nullázódik
+        '''
         if type(t) != int:
             t = 180
             print(f"[F] [Jatekvezerlo] Az idő csak egész szám lehet")
@@ -100,16 +108,24 @@ class Jatekvezerlo():
 
     # Választás ellenőrzése
     def szo_ellenor(self, koord: list):
+        '''
+        A grafikus koordináták alapján hivatkozás a karakterkoordinátákra
+        '''
         # Koordináták alapján ellenőrzés
         szo = "".join([str(self.av_grid.szolista[i[1]][i[0]]) for i in koord])
         for i in self.jatek_szavak.keys():
+            # jatek_szavak.keys -> szó adatbázis indexek
             if self.szavak_adatbazis[i] == szo:
+                # ha létező szó képződik
                 self.av_szolista.szovegek[szo].szin = (255,0,0)
                 self.jatek_szavak[i][1] = True
                 self.jatek_adatok["pont"] += 1
+        # Eddig a pályán megtalált szavak
         megtalalt_szavak = [self.jatek_szavak[x][1] for x in self.jatek_szavak.keys() if self.jatek_szavak[x][0] != False]
-        print(megtalalt_szavak)
         if not False in megtalalt_szavak:
-            print("Minden szó megtalálva")
-            self.jatek_adatok["szint"] += 1
-            self.s_uj_szint(self.av_grid.feloszt_meret+1)
+            # Ha minden szó meglett
+            if self.jatek_adatok["szint"]+1 < self.MAX_SZINT:
+                self.jatek_adatok["szint"] += 1
+                self.s_uj_szint(self.av_grid.feloszt_meret+1)
+            else:
+                self.s_jatekallas("vegeredmeny")

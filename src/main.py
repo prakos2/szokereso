@@ -35,7 +35,7 @@ class Szokereso():
                         40
                     ),
                     True,
-                    (255,255,255),
+                    (0,0,0),
                     2,
                     "Start"
                 ),
@@ -49,7 +49,7 @@ class Szokereso():
                         40
                     ),
                     True,
-                    (255,255,255),
+                    (0,0,0),
                     2,
                     "Kilépés"
                 ),
@@ -97,10 +97,44 @@ class Szokereso():
                 )
             }, (233,179,94)),
             "vegeredmeny": AV.Ablak({
-                "vege": AV.Szoveg((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 20), True, "Verdana", "A játék véget ért!", 25, (0,0,0), True),
-                "pontszam": AV.Szoveg((self.ABLAKVEZERLO.g_ablakmeret()[0]//2, 100), True, "Verdana", f"Elért pontszám: {self.JATEKVEZERLO.jatek_adatok['pont']}", 25, (0,0,0), True),
-                "ujra": AV.Gomb((self.ABLAKVEZERLO.g_ablakmeret()[0]//2.2, 150), (100,50), True, (0,0,0), 1, "Újra")
-            }, (233,179,94))
+                "pontszam": AV.Szoveg(
+                    (self.ABLAKVEZERLO.g_ablakmeret()[0]//2, self.ABLAKVEZERLO.g_ablakmeret()[1]//2),
+                    True,
+                    "Consolas",
+                    "xx szót találtál!",
+                    35,
+                    (0,0,0),
+                    True
+                ),
+                "ujra": AV.Gomb(
+                    (
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(200)//2,
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//2+30
+                    ),
+                    (
+                        200, 
+                        40
+                    ),
+                    True,
+                    (0,0,0),
+                    2,
+                    "Újra"
+                ),
+                "kilepes": AV.Gomb(
+                    (
+                        self.ABLAKVEZERLO.g_ablakmeret()[0]//2-(200)//2,
+                        self.ABLAKVEZERLO.g_ablakmeret()[1]//2+80
+                    ),
+                    (
+                        200,
+                        40
+                    ),
+                    True,
+                    (0,0,0),
+                    2,
+                    "Vissza a menübe"
+                ),
+            }, (233,179,94)),
         })
     
     """
@@ -128,7 +162,7 @@ class Szokereso():
                     if ido < 0: F_JV.s_jatekallas("vegeredmeny") # Ha lejárt az idő
                     # Visszaszámláló óra frissítése
                     F_AV.ABLAKOK["jatek"].ELEMEK["time"].frissit(
-                        Eszkozok.idoformat(ido) + f" - {F_JV.jatek_adatok['szint']}. szint"
+                        Eszkozok.idoformat(ido) + f" - {F_JV.jatek_adatok['szint']+1}. szint"
                     )
                     # Kijelölés frissítése
                     racs_valasztas = F_AV.ABLAKOK["jatek"].ELEMEK["racs"].g_valasztas()
@@ -137,11 +171,13 @@ class Szokereso():
 
                 elif F_JV.g_jatekallas() == "vegeredmeny":
                     F_AV.ABLAKOK["vegeredmeny"].ELEMEK["pontszam"].frissit(
-                        F_JV.jatek_adatok["pont"]
+                        str(F_JV.jatek_adatok["pont"]) + " szót találtál!"
                     )
                     if F_AV.ABLAKOK["vegeredmeny"].ELEMEK["ujra"].g_lenyomva() == True:
                         F_JV.s_uj_jatek(F_AV.ABLAKOK["jatek"])
                         F_JV.s_jatekallas("jatek")
+                    if F_AV.ABLAKOK["vegeredmeny"].ELEMEK["kilepes"].g_lenyomva() == True:
+                        F_JV.s_jatekallas("menu")
 
             except Exception as kivetel:
                 # "crash" előidézése hogy a program ne lépjen "nem válaszol" állapotba fatális kivétel esetén
