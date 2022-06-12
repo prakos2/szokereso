@@ -283,7 +283,7 @@ class Ablakvezerlo():
             self.FOLYAMAT_ABLAK.fill((255,0,0))
     
     # getter függvények
-    def gFELBONTAS(self):
+    def g_FELBONTAS(self):
         return self.TULAJDONSAGOK["FELBONTAS"]
     def g_ablakmeret(self):
         return self.TULAJDONSAGOK["ABLAK_MERET"]

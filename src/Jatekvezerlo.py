@@ -97,6 +97,7 @@ class Jatekvezerlo():
             t = 180
             print(f"[F] [Jatekvezerlo] Az idő csak egész szám lehet")
         self.jatek_adatok["szint"] = 0 # Szint nullázása
+        self.jatek_adatok["pont"] = 0 # Pontok nullázása
         self.jatek_adatok["jatekido"] = (pg.time.get_ticks()//1000 + t) # Játékidő meghatározása: jelenlegi + össz
         self.av_grid = jatekablak.ELEMEK["racs"] # Ablakvezérlő rács hozzárendelése a játékhoz
         self.av_szolista = jatekablak.ELEMEK["szavak"] # Ablakvezérlő rács szólista hozzárendelése a játékhoz

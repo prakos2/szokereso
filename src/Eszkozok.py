@@ -1,4 +1,5 @@
 import random
+
 def bemenetellenor(elem, tipus):
     '''
     Ellenőrzi egy elem típusát, ha nem biztonságos megfelelővé teszi azt
