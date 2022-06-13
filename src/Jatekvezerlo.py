@@ -74,8 +74,8 @@ class Jatekvezerlo():
                     # Elhelyezés a táblában
                     karaktertomb[i][j] = self.szavak_adatbazis[szo_index][betu_index]
                     betu_index += 1
-        self.av_szolista.s_uj_szoveglista([self.szavak_adatbazis[x] for x in self.jatek_szavak.keys() if self.jatek_szavak[x][0] == True])
         self.av_grid.szolista = karaktertomb
+        self.av_szolista.s_uj_szoveglista([self.szavak_adatbazis[x] for x in self.jatek_szavak.keys() if self.jatek_szavak[x][0] == True])
 
     # setter függvények
     def s_uj_szint(self, leptek):
